@@ -1,0 +1,27 @@
+{
+    "name": "drei-d/laravel-jtl-api",
+    "description": "a JTL api wrapper for Laravel",
+    "type": "library",
+    "version": "0.0.1",
+    "require": {
+        "php": "^8.2",
+        "laravel/framework": "^11"
+    },
+    "autoload": {
+        "psr-4": {
+            "DREID\\LaravelJtlApi\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Oliver Vollborn"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "DREID\\LaravelJtlApi\\Providers\\ServiceProvider"
+            ]
+        }
+    }
+}
