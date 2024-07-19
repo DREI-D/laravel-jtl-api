@@ -9,6 +9,7 @@ enum Permission: string
     // Company
     case QueryCompanies = 'company.querycompanies';
     case QuerySuppliers = 'supplier.querysuppliers';
+    case QueryColorCodes = 'colorcode.querycolorcodes';
 
     public function allowed(): bool
     {
