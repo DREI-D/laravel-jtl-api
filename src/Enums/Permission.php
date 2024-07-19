@@ -1,4 +1,4 @@
-<?php
+<?php /** @noinspection SpellCheckingInspection */
 
 namespace DREID\LaravelJtlApi\Enums;
 
@@ -8,6 +8,7 @@ enum Permission: string
 
     // Company
     case QueryCompanies = 'company.querycompanies';
+    case QuerySuppliers = 'supplier.querysuppliers';
 
     public function allowed(): bool
     {
