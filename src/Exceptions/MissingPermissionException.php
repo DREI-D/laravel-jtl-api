@@ -18,17 +18,28 @@ class MissingPermissionException extends Exception
 
     public static function oneOf($permissions): static
     {
+        $permissionNames = static::mapToPermissionNames($permissions);
+
         return new static(
-            'At least one of these permissions has to be enabled: ' . implode(', ', $permissions),
+            'At least one of these permissions has to be enabled: ' . $permissionNames,
             $permissions
         );
     }
 
     public static function all($permissions): static
     {
+        $permissionNames = static::mapToPermissionNames($permissions);
+
         return new static(
-            'All of these permissions have to be enabled: ' . implode(', ', $permissions),
+            'All of these permissions have to be enabled: ' . $permissionNames,
             $permissions
         );
+    }
+
+    private static function mapToPermissionNames(array $permissions): string
+    {
+        return implode(', ', array_map(function ($permission) {
+            return $permission->name . ' (' . $permission->value . ')';
+        }, $permissions));
     }
 }

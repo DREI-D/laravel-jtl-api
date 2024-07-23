@@ -9,6 +9,6 @@ class UnhandledResponseException extends Exception
 {
     public function __construct(public readonly ApiResponse $response)
     {
-        parent::__construct('The response could not be handled.');
+        parent::__construct('The response could not be handled: ' . $this->response->object->body());
     }
 }

@@ -22,6 +22,6 @@ return [
 
     'permissions' => [
         Permission::AllRead,
-        // Permission::QueryCompanies,
+        Permission::StockAdjustment,
     ]
 ];

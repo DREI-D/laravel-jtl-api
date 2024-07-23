@@ -8,8 +8,17 @@ enum Permission: string
 
     // Company
     case QueryCompanies = 'company.querycompanies';
+
+    // Suppliers
     case QuerySuppliers = 'supplier.querysuppliers';
+
+    // Color Codes
     case QueryColorCodes = 'colorcode.querycolorcodes';
+
+    // Stock
+    case QueryStocksPerItem = 'stock.querystocksperitem';
+    case StockAdjustment = 'stock.stockadjustment';
+    case QueryStockChanges = 'stock.querystockchanges';
 
     public function allowed(): bool
     {
