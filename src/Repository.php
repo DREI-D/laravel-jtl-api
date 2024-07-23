@@ -126,4 +126,15 @@ class Repository
 
         return $headers;
     }
+
+    protected function deleteNullValues(array $body): array
+    {
+        foreach ($body as $key => $value) {
+            if (!$value) {
+                unset($body[$key]);
+            }
+        }
+
+        return $body;
+    }
 }

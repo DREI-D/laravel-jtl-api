@@ -23,5 +23,7 @@ return [
     'permissions' => [
         Permission::AllRead,
         Permission::StockAdjustment,
+        Permission::CreateSalesOrder,
+        Permission::CreateSalesOrderLineItem,
     ]
 ];

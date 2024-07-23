@@ -29,6 +29,10 @@ enum Permission: string
     case StockAdjustment = 'stock.stockadjustment';
     case QueryStockChanges = 'stock.querystockchanges';
 
+    // Sales Order
+    case CreateSalesOrder = 'salesorder.createsalesorder';
+    case CreateSalesOrderLineItem = 'salesorder.createsalesorderlineitem';
+
     public function allowed(): bool
     {
         return in_array($this, config('jtl-api.permissions'));
