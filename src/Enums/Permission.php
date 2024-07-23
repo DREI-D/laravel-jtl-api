@@ -15,6 +15,9 @@ enum Permission: string
     // Color Codes
     case QueryColorCodes = 'colorcode.querycolorcodes';
 
+    // Categories
+    case QueryCategories = 'category.querycategories';
+
     // Stock
     case QueryStocksPerItem = 'stock.querystocksperitem';
     case StockAdjustment = 'stock.stockadjustment';
