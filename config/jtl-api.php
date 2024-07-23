@@ -25,5 +25,6 @@ return [
         Permission::StockAdjustment,
         Permission::CreateSalesOrder,
         Permission::CreateSalesOrderLineItem,
+        Permission::CreateCustomer,
     ]
 ];

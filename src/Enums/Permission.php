@@ -17,9 +17,13 @@ enum Permission: string
 
     // Customers
     case QueryCustomers = 'customer.querycustomers';
+    case CreateCustomer = 'customer.createcustomer';
 
     // Color Codes
     case QueryColorCodes = 'colorcode.querycolorcodes';
+
+    // Customer Groups
+    case QueryCustomerGroups = 'customergroup.querycustomergroups';
 
     // Categories
     case QueryCategories = 'category.querycategories';

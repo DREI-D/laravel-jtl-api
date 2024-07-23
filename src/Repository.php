@@ -130,7 +130,7 @@ class Repository
     protected function deleteNullValues(array $body): array
     {
         foreach ($body as $key => $value) {
-            if (!$value) {
+            if ($value === null) {
                 unset($body[$key]);
             }
         }
