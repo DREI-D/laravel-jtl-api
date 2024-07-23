@@ -3,7 +3,7 @@
 namespace DREID\LaravelJtlApi\Modules\Stock\Responses;
 
 use DREID\LaravelJtlApi\ApiResponse;
-use DREID\LaravelJtlApi\Modules\Stock\StockChangeDto;
+use DREID\LaravelJtlApi\Modules\Stock\DataTransferObjects\StockChangeDto;
 
 readonly class StockAdjustmentResponse
 {

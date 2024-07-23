@@ -3,7 +3,7 @@
 namespace DREID\LaravelJtlApi\Modules\ColorCode\Responses;
 
 use DREID\LaravelJtlApi\ApiResponse;
-use DREID\LaravelJtlApi\Modules\ColorCode\ColorCodeDto;
+use DREID\LaravelJtlApi\Modules\ColorCode\DataTransferObjects\ColorCodeDto;
 
 readonly class QueryColorCodesResponse
 {

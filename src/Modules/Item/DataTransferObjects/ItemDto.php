@@ -1,6 +1,6 @@
 <?php
 
-namespace DREID\LaravelJtlApi\Modules\Item;
+namespace DREID\LaravelJtlApi\Modules\Item\DataTransferObjects;
 
 readonly class ItemDto
 {

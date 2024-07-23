@@ -3,7 +3,7 @@
 namespace DREID\LaravelJtlApi\Modules\Stock\Responses;
 
 use DREID\LaravelJtlApi\ApiResponse;
-use DREID\LaravelJtlApi\Modules\Stock\StockDto;
+use DREID\LaravelJtlApi\Modules\Stock\DataTransferObjects\StockDto;
 use DREID\LaravelJtlApi\PaginatedResponse;
 
 readonly class QueryStockPerItemResponse extends PaginatedResponse

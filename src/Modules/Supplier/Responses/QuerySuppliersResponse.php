@@ -3,7 +3,7 @@
 namespace DREID\LaravelJtlApi\Modules\Supplier\Responses;
 
 use DREID\LaravelJtlApi\ApiResponse;
-use DREID\LaravelJtlApi\Modules\Supplier\SupplierDto;
+use DREID\LaravelJtlApi\Modules\Supplier\DataTransferObjects\SupplierDto;
 
 readonly class QuerySuppliersResponse
 {

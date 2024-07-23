@@ -1,6 +1,6 @@
 <?php
 
-namespace DREID\LaravelJtlApi\Modules\Stock;
+namespace DREID\LaravelJtlApi\Modules\Stock\DataTransferObjects;
 
 readonly class StockDto
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace DREID\LaravelJtlApi\Modules\Company;
+namespace DREID\LaravelJtlApi\Modules\Company\DataTransferObjects;
 
 readonly class CompanyDto
 {

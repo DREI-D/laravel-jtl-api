@@ -1,6 +1,6 @@
 <?php
 
-namespace DREID\LaravelJtlApi\Modules\AppRegistration;
+namespace DREID\LaravelJtlApi\Modules\AppRegistration\DataTransferObjects;
 
 readonly class RegistrationStatusDto
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace DREID\LaravelJtlApi\Modules\Supplier;
+namespace DREID\LaravelJtlApi\Modules\Supplier\DataTransferObjects;
 
 readonly class SupplierDto
 {

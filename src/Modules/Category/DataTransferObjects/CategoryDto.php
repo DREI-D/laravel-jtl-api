@@ -1,6 +1,6 @@
 <?php
 
-namespace DREID\LaravelJtlApi\Modules\Category;
+namespace DREID\LaravelJtlApi\Modules\Category\DataTransferObjects;
 
 readonly class CategoryDto
 {

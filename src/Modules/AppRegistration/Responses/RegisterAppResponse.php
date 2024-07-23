@@ -3,8 +3,7 @@
 namespace DREID\LaravelJtlApi\Modules\AppRegistration\Responses;
 
 use DREID\LaravelJtlApi\ApiResponse;
-use DREID\LaravelJtlApi\Modules\AppRegistration\RegistrationStatusDto;
-use DREID\LaravelJtlApi\Modules\Company\CompanyDto;
+use DREID\LaravelJtlApi\Modules\AppRegistration\DataTransferObjects\RegistrationStatusDto;
 
 readonly class RegisterAppResponse
 {

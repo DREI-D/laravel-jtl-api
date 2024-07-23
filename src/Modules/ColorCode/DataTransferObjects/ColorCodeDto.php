@@ -1,6 +1,6 @@
 <?php
 
-namespace DREID\LaravelJtlApi\Modules\ColorCode;
+namespace DREID\LaravelJtlApi\Modules\ColorCode\DataTransferObjects;
 
 readonly class ColorCodeDto
 {

@@ -3,7 +3,7 @@
 namespace DREID\LaravelJtlApi\Modules\Company\Responses;
 
 use DREID\LaravelJtlApi\ApiResponse;
-use DREID\LaravelJtlApi\Modules\Company\CompanyDto;
+use DREID\LaravelJtlApi\Modules\Company\DataTransferObjects\CompanyDto;
 
 readonly class QueryCompaniesResponse
 {
