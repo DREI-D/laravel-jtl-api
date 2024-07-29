@@ -10,6 +10,8 @@ readonly class ItemDto
         public string $name,
         public ?string $description,
         public ?string $shortDescription,
+        public ItemPriceDataDto $itemPriceData,
+        public ItemStorageOptionsDto $storageOptions,
     ) {}
 
     public static function fromResponse(array $data): static
@@ -20,6 +22,8 @@ readonly class ItemDto
             $data['Name'],
             $data['Description'] ?: null,
             $data['ShortDescription'] ?: null,
+            ItemPriceDataDto::fromResponse($data['ItemPriceData']),
+            ItemStorageOptionsDto::fromResponse($data['StorageOptions']),
         );
     }
 }
