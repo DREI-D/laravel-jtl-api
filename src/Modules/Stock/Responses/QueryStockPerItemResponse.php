@@ -8,11 +8,11 @@ use DREID\LaravelJtlApi\PaginatedResponse;
 
 readonly class QueryStockPerItemResponse extends PaginatedResponse
 {
-    public function __construct(public ApiResponse $response)
+    public function __construct(ApiResponse $response)
     {
         $items = array_map(static function ($item) {
             return StockDto::fromResponse($item);
-        }, $this->response->json['Items']);
+        }, $response->json['Items']);
 
         parent::__construct($response, $items);
     }
