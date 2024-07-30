@@ -2,7 +2,8 @@
     "name": "drei-d/laravel-jtl-api",
     "description": "a JTL api wrapper for Laravel",
     "type": "library",
-    "version": "0.0.5",
+    "version": "1.0.0",
+    "license": "MIT",
     "require": {
         "php": "^8.2",
         "laravel/framework": "^11"
