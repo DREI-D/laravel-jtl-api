@@ -15,6 +15,7 @@ readonly class CreateSalesOrderRequest
         public ?CreateSalesOrderAddressRequest $billingAddress = null,
         public ?CreateSalesOrderAddressRequest $shipmentAddress = null,
         public ?string $salesOrderDate = null,
+        public ?CreateSalesOrderShippingDetailRequest $salesOrderShippingDetail = null,
         public ?int $colorCodeId = null,
         public ?string $comment = null,
         public ?string $customerComment = null,

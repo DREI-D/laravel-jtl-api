@@ -34,20 +34,30 @@ class SalesOrderRepository extends Repository
             throw MissingPermissionException::oneOf($permissions);
         }
 
+        $salesOrderShippingDetail = $request->salesOrderShippingDetail ? $this->deleteNullValues([
+            'ShippingMethodId'      => $request->salesOrderShippingDetail->shippingMethodId,
+            'ShippingPriority'      => $request->salesOrderShippingDetail->shippingPriority,
+            'ShippingDate'          => $request->salesOrderShippingDetail->shippingDate,
+            'EstimatedDeliveryDate' => $request->salesOrderShippingDetail->estimatedDeliveryDate,
+            'OnHoldReasonId'        => $request->salesOrderShippingDetail->onHoldReasonId,
+            'ExtraWeight'           => $request->salesOrderShippingDetail->extraWeight,
+        ]) : null;
+
         $body = [
-            'CustomerId'      => $request->customerId,
-            'Number'          => $request->number,
-            'ExternalNumber'  => $request->externalNumber,
-            'BillingNumber'   => $request->billingNumber,
-            'CompanyId'       => $request->companyId,
-            'CustomerVatID'   => $request->customerVatId,
-            'BillingAddress'  => $this->mapAddress($request->billingAddress),
-            'Shipmentaddress' => $this->mapAddress($request->shipmentAddress),
-            'SalesOrderDate'  => $request->salesOrderDate,
-            'ColorcodeId'     => $request->colorCodeId,
-            'Comment'         => $request->comment,
-            'CustomerComment' => $request->customerComment,
-            'LanguageIso'     => $request->languageIso,
+            'CustomerId'               => $request->customerId,
+            'Number'                   => $request->number,
+            'ExternalNumber'           => $request->externalNumber,
+            'BillingNumber'            => $request->billingNumber,
+            'CompanyId'                => $request->companyId,
+            'CustomerVatID'            => $request->customerVatId,
+            'BillingAddress'           => $this->mapAddress($request->billingAddress),
+            'Shipmentaddress'          => $this->mapAddress($request->shipmentAddress),
+            'SalesOrderDate'           => $request->salesOrderDate,
+            'SalesOrderShippingDetail' => $salesOrderShippingDetail,
+            'ColorcodeId'              => $request->colorCodeId,
+            'Comment'                  => $request->comment,
+            'CustomerComment'          => $request->customerComment,
+            'LanguageIso'              => $request->languageIso,
         ];
 
         $body = $this->deleteNullValues($body);

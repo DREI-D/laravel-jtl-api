@@ -9,6 +9,9 @@ enum Permission: string
     // Company
     case QueryCompanies = 'company.querycompanies';
 
+    // Shipping Methods
+    case QueryShippingMethods = 'shippingmethod.queryshippingmethods';
+
     // Suppliers
     case QuerySuppliers = 'supplier.querysuppliers';
 
