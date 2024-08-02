@@ -11,6 +11,7 @@ use DREID\LaravelJtlApi\Exceptions\UnauthorizedException;
 use DREID\LaravelJtlApi\Exceptions\UnhandledResponseException;
 use DREID\LaravelJtlApi\Modules\Customer\Requests\CreateCustomerRequest;
 use DREID\LaravelJtlApi\Modules\Customer\Requests\QueryCustomersRequest;
+use DREID\LaravelJtlApi\Modules\Customer\Requests\UpdateCustomerRequest;
 use DREID\LaravelJtlApi\Modules\Customer\Responses\CreateCustomerResponse;
 use DREID\LaravelJtlApi\Modules\Customer\Responses\QueryCustomersResponse;
 use DREID\LaravelJtlApi\Repository;
@@ -99,6 +100,56 @@ class CustomerRepository extends Repository
 
         if ($response->wasSuccessful) {
             return new CreateCustomerResponse($response);
+        }
+
+        $this->throwExceptionsIfPossible($response);
+        throw new UnhandledResponseException($response);
+    }
+
+    /**
+     * @throws MissingApiKeyException
+     * @throws MissingLicenseException
+     * @throws MissingPermissionException
+     * @throws UnauthorizedException
+     * @throws UnhandledResponseException
+     * @throws ConnectionException
+     */
+    public function updateCustomer(UpdateCustomerRequest $request): UpdateCustomerResponse
+    {
+        $permissions = [Permission::UpdateCustomer];
+
+        if (!Permission::allowsOneOf($permissions)) {
+            throw MissingPermissionException::oneOf($permissions);
+        }
+
+        $body = [
+            'Number'                   => $request->number,
+            'CustomerGroupId'          => $request->customerGroupId,
+            'BillingAddress'           => $this->mapAddress($request->billingAddress),
+            'Shipmentaddress'          => $this->mapAddress($request->shipmentAddress),
+            'CustomAddress'            => $this->mapAddress($request->customAddress),
+            'CustomerSince'            => $request->customerSince,
+            'LastChange'               => $request->lastChange,
+            'LanguageIso'              => $request->languageIso,
+            'InternalCompanyId'        => $request->internalCompanyId,
+            'CustomerCategoryId'       => $request->customerCategoryId,
+            'TaxIdentificationNumber'  => $request->taxIdentificationNumber,
+            'AccountsReceivableNumber' => $request->accountsReceivableNumber,
+            'CommercialRegisterNumber' => $request->commercialRegisterNumber,
+            'Website'                  => $request->website,
+            'InitialContact'           => $request->initialContact,
+            'EbayUsername'             => $request->ebayUsername,
+            'Birthday'                 => $request->birthday,
+            'IsLocked'                 => $request->isLocked,
+            'IsCashRegisterBased'      => $request->isCashRegisterBased,
+        ];
+
+        $body = $this->deleteNullValues($body);
+
+        $response = $this->patch('/v1/customers/' . $request->customerId, $body);
+
+        if ($response->wasSuccessful) {
+            return new UpdateCustomerResponse($response);
         }
 
         $this->throwExceptionsIfPossible($response);

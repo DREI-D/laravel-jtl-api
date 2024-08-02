@@ -21,6 +21,7 @@ enum Permission: string
     // Customers
     case QueryCustomers = 'customer.querycustomers';
     case CreateCustomer = 'customer.createcustomer';
+    case UpdateCustomer = 'customer.updatecustomer';
 
     // Color Codes
     case QueryColorCodes = 'colorcode.querycolorcodes';
