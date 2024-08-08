@@ -11,9 +11,17 @@ use DREID\LaravelJtlApi\Exceptions\UnauthorizedException;
 use DREID\LaravelJtlApi\Exceptions\UnhandledResponseException;
 use DREID\LaravelJtlApi\Modules\Item\Requests\CreateItemRequest;
 use DREID\LaravelJtlApi\Modules\Item\Requests\Global\ItemCategoryRequest;
+use DREID\LaravelJtlApi\Modules\Item\Requests\Global\ItemDangerousGoodsRequest;
+use DREID\LaravelJtlApi\Modules\Item\Requests\Global\ItemDimensionsRequest;
+use DREID\LaravelJtlApi\Modules\Item\Requests\Global\ItemIdentifiersRequest;
+use DREID\LaravelJtlApi\Modules\Item\Requests\Global\ItemPriceDataRequest;
+use DREID\LaravelJtlApi\Modules\Item\Requests\Global\ItemStorageOptionsRequest;
+use DREID\LaravelJtlApi\Modules\Item\Requests\Global\ItemWeightsRequest;
 use DREID\LaravelJtlApi\Modules\Item\Requests\QueryItemsRequest;
+use DREID\LaravelJtlApi\Modules\Item\Requests\UpdateItemRequest;
 use DREID\LaravelJtlApi\Modules\Item\Responses\CreateItemResponse;
 use DREID\LaravelJtlApi\Modules\Item\Responses\QueryItemsResponse;
+use DREID\LaravelJtlApi\Modules\Item\Responses\UpdateItemResponse;
 use DREID\LaravelJtlApi\Repository;
 
 class ItemRepository extends Repository
@@ -69,65 +77,7 @@ class ItemRepository extends Repository
             throw MissingPermissionException::oneOf($permissions);
         }
 
-        $body = $this->deleteNullValues([
-            'SKU'                => $request->sku,
-            'ManufacturerId'     => $request->manufacturerId,
-            'Categories'         => array_map(function (ItemCategoryRequest $categoryRequest) {
-                return [
-                    'CategoryId' => $categoryRequest->categoryId
-                ];
-            }, $request->categories),
-            'Name'               => $request->name,
-            'Description'        => $request->description,
-            'ShortDescription'   => $request->shortDescription,
-            'Identifiers'        => $request->identifiers ? $this->deleteNullValues([
-                'Gtin'               => $request->identifiers->gtin,
-                'ManufacturerNumber' => $request->identifiers->manufacturerNumber,
-                'ISBN'               => $request->identifiers->isbn,
-                'UPC'                => $request->identifiers->upc,
-                'AmazonFnsku'        => $request->identifiers->amazonFnsku,
-                'Asins'              => $request->identifiers->asins,
-                'OwnIdentifier'      => $request->identifiers->ownIdentifier,
-            ]) : null,
-            'ItemPriceData'      => $request->itemPriceData ? $this->deleteNullValues([
-                'SalesPriceNet'        => $request->itemPriceData->salesPriceNet,
-                'SuggestedRetailPrice' => $request->itemPriceData->suggestedRetailPrice,
-                'PurchasePriceNet'     => $request->itemPriceData->purchasePriceNet,
-                'EbayPrice'            => $request->itemPriceData->ebayPrice,
-                'AmazonPrice'          => $request->itemPriceData->amazonPrice,
-            ]) : null,
-            'StorageOptions'     => $request->storageOptions ? $this->deleteNullValues([
-                'InventoryManagementActive'             => $request->storageOptions->inventoryManagementActive,
-                'SplitQuantity'                         => $request->storageOptions->splitQuantity,
-                'GlobalMinimumStockLevel'               => $request->storageOptions->globalMinimumStock,
-                'Buffer'                                => $request->storageOptions->buffer,
-                'SerialNumberItem'                      => $request->storageOptions->serialNumberItem,
-                'SerialNumberTracking'                  => $request->storageOptions->serialNumberTracking,
-                'SubjectToShelfLifeExpirationDate'      => $request->storageOptions->subjectToShelfLifeExpirationDate,
-                'SubjectToBatchItem'                    => $request->storageOptions->subjectToBatchItem,
-                'ProcurementTime'                       => $request->storageOptions->procurementTime,
-                'DetermineProcurementTimeAutomatically' => $request->storageOptions->determineProcurementTimeAutomatically,
-                'AdditionalHandlingTime'                => $request->storageOptions->additionalHandlingTime,
-            ]) : null,
-            'CountryOfOrigin'    => $request->countryOfOrigin,
-            'Dimensions'         => $request->dimensions ? $this->deleteNullValues([
-                'Length' => $request->dimensions->length,
-                'Width'  => $request->dimensions->width,
-                'Height' => $request->dimensions->height,
-            ]) : null,
-            'Weights'            => $request->weights ? $this->deleteNullValues([
-                'ItemWeight'     => $request->weights->itemWeight,
-                'ShippingWeight' => $request->weights->shippingWeight,
-            ]) : null,
-            'AllowNegativeStock' => $request->allowNegativeStock,
-            'DangerousGoods'     => $request->dangerousGoods ? $this->deleteNullValues([
-                'UnNumber' => $request->dangerousGoods->unNumber,
-                'HazardNo' => $request->dangerousGoods->hazardNo,
-            ]) : null,
-            'Taric'              => $request->taric,
-            'SearchTerms'        => $request->searchTerms,
-        ]);
-
+        $body = $this->deleteNullValues($this->buildRequestBody($request));
         $response = $this->post('/v1/items', $body);
 
         if ($response->wasSuccessful) {
@@ -136,5 +86,129 @@ class ItemRepository extends Repository
 
         $this->throwExceptionsIfPossible($response);
         throw new UnhandledResponseException($response);
+    }
+
+    /**
+     * @throws UnhandledResponseException
+     * @throws UnauthorizedException
+     * @throws ConnectionException
+     * @throws MissingLicenseException
+     * @throws MissingApiKeyException
+     * @throws MissingPermissionException
+     */
+    public function updateItem(UpdateItemRequest $request): UpdateItemResponse
+    {
+        $permissions = [Permission::UpdateItem];
+
+        if (!Permission::allowsOneOf($permissions)) {
+            throw MissingPermissionException::oneOf($permissions);
+        }
+
+        $body = $this->deleteNullValues($this->buildRequestBody($request));
+        $response = $this->patch('/v1/items/' . $request->id, $body);
+
+        if ($response->wasSuccessful) {
+            return new UpdateItemResponse($response);
+        }
+
+        $this->throwExceptionsIfPossible($response);
+        throw new UnhandledResponseException($response);
+    }
+
+    private function buildRequestBody(CreateItemRequest|UpdateItemRequest $request): array
+    {
+        return [
+            'SKU'                => $request->sku,
+            'ManufacturerId'     => $request->manufacturerId,
+            'Categories'         => $request->categories ? $this->mapCategories($request->categories) : null,
+            'Name'               => $request->name,
+            'Description'        => $request->description,
+            'ShortDescription'   => $request->shortDescription,
+            'Identifiers'        => $this->mapIdentifiers($request->identifiers),
+            'ItemPriceData'      => $this->mapItemPriceData($request->itemPriceData),
+            'StorageOptions'     => $this->mapStorageOptions($request->storageOptions),
+            'CountryOfOrigin'    => $request->countryOfOrigin,
+            'Dimensions'         => $this->mapDimensions($request->dimensions),
+            'Weights'            => $this->mapWeights($request->weights),
+            'AllowNegativeStock' => $request->allowNegativeStock,
+            'DangerousGoods'     => $this->mapDangerousGoods($request->dangerousGoods),
+            'Taric'              => $request->taric,
+            'SearchTerms'        => $request->searchTerms,
+        ];
+    }
+
+    private function mapCategories(array $categories): array
+    {
+        return array_map(function (ItemCategoryRequest $categoryRequest) {
+            return [
+                'CategoryId' => $categoryRequest->categoryId
+            ];
+        }, $categories);
+    }
+
+    private function mapIdentifiers(?ItemIdentifiersRequest $identifiers): ?array
+    {
+        return $identifiers ? $this->deleteNullValues([
+            'Gtin'               => $identifiers->gtin,
+            'ManufacturerNumber' => $identifiers->manufacturerNumber,
+            'ISBN'               => $identifiers->isbn,
+            'UPC'                => $identifiers->upc,
+            'AmazonFnsku'        => $identifiers->amazonFnsku,
+            'Asins'              => $identifiers->asins,
+            'OwnIdentifier'      => $identifiers->ownIdentifier,
+        ]) : null;
+    }
+
+    private function mapItemPriceData(?ItemPriceDataRequest $itemPriceData): ?array
+    {
+        return $itemPriceData ? $this->deleteNullValues([
+            'SalesPriceNet'        => $itemPriceData->salesPriceNet,
+            'SuggestedRetailPrice' => $itemPriceData->suggestedRetailPrice,
+            'PurchasePriceNet'     => $itemPriceData->purchasePriceNet,
+            'EbayPrice'            => $itemPriceData->ebayPrice,
+            'AmazonPrice'          => $itemPriceData->amazonPrice,
+        ]) : null;
+    }
+
+    private function mapStorageOptions(?ItemStorageOptionsRequest $storageOptions): ?array
+    {
+        return $storageOptions ? $this->deleteNullValues([
+            'InventoryManagementActive'             => $storageOptions->inventoryManagementActive,
+            'SplitQuantity'                         => $storageOptions->splitQuantity,
+            'GlobalMinimumStockLevel'               => $storageOptions->globalMinimumStock,
+            'Buffer'                                => $storageOptions->buffer,
+            'SerialNumberItem'                      => $storageOptions->serialNumberItem,
+            'SerialNumberTracking'                  => $storageOptions->serialNumberTracking,
+            'SubjectToShelfLifeExpirationDate'      => $storageOptions->subjectToShelfLifeExpirationDate,
+            'SubjectToBatchItem'                    => $storageOptions->subjectToBatchItem,
+            'ProcurementTime'                       => $storageOptions->procurementTime,
+            'DetermineProcurementTimeAutomatically' => $storageOptions->determineProcurementTimeAutomatically,
+            'AdditionalHandlingTime'                => $storageOptions->additionalHandlingTime,
+        ]) : null;
+    }
+
+    private function mapDimensions(?ItemDimensionsRequest $dimensions): ?array
+    {
+        return $dimensions ? $this->deleteNullValues([
+            'Length' => $dimensions->length,
+            'Width'  => $dimensions->width,
+            'Height' => $dimensions->height,
+        ]) : null;
+    }
+
+    private function mapWeights(?ItemWeightsRequest $weights): ?array
+    {
+        return $weights ? $this->deleteNullValues([
+            'ItemWeight'     => $weights->itemWeight,
+            'ShippingWeight' => $weights->shippingWeight,
+        ]) : null;
+    }
+
+    private function mapDangerousGoods(?ItemDangerousGoodsRequest $dangerousGoods): ?array
+    {
+        return $dangerousGoods ? $this->deleteNullValues([
+            'UnNumber' => $dangerousGoods->unNumber,
+            'HazardNo' => $dangerousGoods->hazardNo,
+        ]) : null;
     }
 }
