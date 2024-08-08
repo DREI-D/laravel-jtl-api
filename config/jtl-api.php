@@ -28,5 +28,6 @@ return [
         Permission::CreateCustomer,
         Permission::UpdateCustomer,
         Permission::CreateCategory,
+        Permission::CreateItem,
     ]
 ];

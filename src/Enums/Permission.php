@@ -17,6 +17,7 @@ enum Permission: string
 
     // Items
     case QueryItems = 'item.queryitems';
+    case CreateItem = 'item.createitem';
 
     // Customers
     case QueryCustomers = 'customer.querycustomers';
