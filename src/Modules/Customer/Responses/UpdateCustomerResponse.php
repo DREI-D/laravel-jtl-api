@@ -1,6 +1,6 @@
 <?php
 
-namespace DREID\LaravelJtlApi\Modules\Customer;
+namespace DREID\LaravelJtlApi\Modules\Customer\Responses;
 
 use DREID\LaravelJtlApi\ApiResponse;
 use DREID\LaravelJtlApi\Modules\Customer\DataTransferObjects\CustomerDto;

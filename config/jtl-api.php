@@ -27,5 +27,6 @@ return [
         Permission::CreateSalesOrderLineItem,
         Permission::CreateCustomer,
         Permission::UpdateCustomer,
+        Permission::CreateCategory,
     ]
 ];

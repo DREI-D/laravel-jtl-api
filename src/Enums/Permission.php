@@ -31,6 +31,7 @@ enum Permission: string
 
     // Categories
     case QueryCategories = 'category.querycategories';
+    case CreateCategory = 'category.createcategory';
 
     // Stock
     case QueryStocksPerItem = 'stock.querystocksperitem';

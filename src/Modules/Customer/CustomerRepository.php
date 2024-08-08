@@ -14,6 +14,7 @@ use DREID\LaravelJtlApi\Modules\Customer\Requests\QueryCustomersRequest;
 use DREID\LaravelJtlApi\Modules\Customer\Requests\UpdateCustomerRequest;
 use DREID\LaravelJtlApi\Modules\Customer\Responses\CreateCustomerResponse;
 use DREID\LaravelJtlApi\Modules\Customer\Responses\QueryCustomersResponse;
+use DREID\LaravelJtlApi\Modules\Customer\Responses\UpdateCustomerResponse;
 use DREID\LaravelJtlApi\Repository;
 use DREID\LaravelJtlApi\Traits\MapAddress;
 
