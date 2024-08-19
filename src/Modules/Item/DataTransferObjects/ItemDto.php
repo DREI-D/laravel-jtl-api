@@ -7,6 +7,8 @@ readonly class ItemDto
     public function __construct(
         public int $id,
         public string $sku,
+        public bool $isActive,
+        public array $categories,
         public ?int $manufacturerId,
         public string $name,
         public ?string $description,
@@ -28,6 +30,10 @@ readonly class ItemDto
         return new self(
             $data['Id'],
             $data['SKU'],
+            $data['IsActive'],
+            array_map(static function ($data) {
+                return ItemCategoryDto::fromResponse($data);
+            }, $data['Categories'] ?? []),
             $data['ManufacturerId'] ?? null,
             $data['Name'],
             $data['Description'] ?: null,
