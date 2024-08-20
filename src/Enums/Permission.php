@@ -41,6 +41,7 @@ enum Permission: string
     case QueryStockChanges = 'stock.querystockchanges';
 
     // Sales Order
+    case QuerySalesOrders = 'salesorder.querysalesorders';
     case CreateSalesOrder = 'salesorder.createsalesorder';
     case CreateSalesOrderLineItem = 'salesorder.createsalesorderlineitem';
 
