@@ -2,6 +2,8 @@
 
 namespace DREID\LaravelJtlApi\Modules\Item\DataTransferObjects;
 
+use DREID\LaravelJtlApi\Services\DataTransferObjectService;
+
 readonly class ItemDto
 {
     public function __construct(
@@ -27,6 +29,8 @@ readonly class ItemDto
 
     public static function fromResponse(array $data): static
     {
+        $service = app(DataTransferObjectService::class);
+
         return new self(
             $data['Id'],
             $data['SKU'],
@@ -34,20 +38,20 @@ readonly class ItemDto
             array_map(static function ($data) {
                 return ItemCategoryDto::fromResponse($data);
             }, $data['Categories'] ?? []),
-            $data['ManufacturerId'] ?? null,
+            $service->getArrayValue($data, 'ManufacturerId'),
             $data['Name'],
-            $data['Description'] ?: null,
-            $data['ShortDescription'] ?: null,
+            $service->getArrayValue($data, 'Description'),
+            $service->getArrayValue($data, 'ShortDescription'),
             ItemIdentifiersDto::fromResponse($data['Identifiers']),
             ItemPriceDataDto::fromResponse($data['ItemPriceData']),
             ItemStorageOptionsDto::fromResponse($data['StorageOptions']),
-            $data['CountryOfOrigin'] ?: null,
+            $service->getArrayValue($data, 'CountryOfOrigin'),
             ItemDimensionsDto::fromResponse($data['Dimensions']),
             ItemWeightsDto::fromResponse($data['Weights']),
             $data['AllowNegativeStock'],
             ItemDangerousGoodsDto::fromResponse($data['DangerousGoods']),
-            $data['Taric'] ?: null,
-            $data['SearchTerms'] ?: null,
+            $service->getArrayValue($data, 'Taric'),
+            $service->getArrayValue($data, 'SearchTerms'),
         );
     }
 }

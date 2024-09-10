@@ -2,6 +2,8 @@
 
 namespace DREID\LaravelJtlApi\Modules\Item\DataTransferObjects;
 
+use DREID\LaravelJtlApi\Services\DataTransferObjectService;
+
 readonly class ItemIdentifiersDto
 {
     public function __construct(
@@ -16,14 +18,16 @@ readonly class ItemIdentifiersDto
 
     public static function fromResponse(array $data): static
     {
+        $service = app(DataTransferObjectService::class);
+
         return new self(
-            $data['Gtin'] ?: null,
-            $data['ManufacturerNumber'] ?: null,
-            $data['ISBN'] ?: null,
-            $data['UPC'] ?: null,
-            $data['AmazonFnsku'] ?: null,
-            $data['Asins'],
-            $data['OwnIdentifier'] ?: null,
+            $service->getArrayValue($data, 'Gtin'),
+            $service->getArrayValue($data, 'ManufacturerNumber'),
+            $service->getArrayValue($data, 'ISBN'),
+            $service->getArrayValue($data, 'UPC'),
+            $service->getArrayValue($data, 'AmazonFnsku'),
+            $service->getArrayValue($data, 'Asins'),
+            $service->getArrayValue($data, 'OwnIdentifier'),
         );
     }
 }
