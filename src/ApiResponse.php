@@ -9,12 +9,10 @@ readonly class ApiResponse
     public function __construct(
         public Response $object,
         public int $status,
-
         public string $url,
         public string $method,
         public array $params,
         public array $headers,
-
         public array $json = [],
         public bool $wasSuccessful = false,
     ) {}
@@ -25,8 +23,7 @@ readonly class ApiResponse
         string $method,
         array $params,
         array $headers,
-    ): self
-    {
+    ): self {
         return new self(
             $response,
             $response->status(),

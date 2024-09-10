@@ -13,9 +13,9 @@ readonly class CustomerOtherAddressesDto
     public static function fromResponse(array $data): static
     {
         return new self(
-            array_map(fn($item) => CustomerAddressDto::fromResponse($item), $data['OtherBillingAddresses'] ?? []),
-            array_map(fn($item) => CustomerAddressDto::fromResponse($item), $data['OtherShippingAddresses'] ?? []),
-            array_map(fn($item) => CustomerAddressDto::fromResponse($item), $data['OtherCustomerAddresses'] ?? []),
+            array_map(fn ($item) => CustomerAddressDto::fromResponse($item), $data['OtherBillingAddresses'] ?? []),
+            array_map(fn ($item) => CustomerAddressDto::fromResponse($item), $data['OtherShippingAddresses'] ?? []),
+            array_map(fn ($item) => CustomerAddressDto::fromResponse($item), $data['OtherCustomerAddresses'] ?? []),
         );
     }
 }
