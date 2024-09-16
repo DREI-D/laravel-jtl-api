@@ -67,7 +67,7 @@ class StockRepository extends Repository
             throw MissingPermissionException::oneOf($permissions);
         }
 
-        $response = $this->post('/v1/stocks', [
+        $body = $this->deleteNullValues([
             'WarehouseId'       => $request->warehouseId,
             'ItemId'            => $request->itemId,
             'Quantity'          => $request->quantity,
@@ -77,6 +77,8 @@ class StockRepository extends Repository
             'SerialNumbers'     => $request->serialNumbers,
             'Comment'           => $request->comment,
         ]);
+
+        $response = $this->post('/v1/stocks', $body);
 
         if ($response->wasSuccessful) {
             return new StockAdjustmentResponse($response);
