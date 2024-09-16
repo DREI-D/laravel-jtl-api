@@ -14,6 +14,12 @@ enum Permission: string
     // Shipping Methods
     case QueryShippingMethods = 'shippingmethod.queryshippingmethods';
 
+    // Warehouses
+    case QueryWarehouses = 'warehouse.querywarehouses';
+
+    // Storage Locations
+    case QueryStorageLocations = 'warehouse.querystoragelocations';
+
     // Suppliers
     case QuerySuppliers = 'supplier.querysuppliers';
 

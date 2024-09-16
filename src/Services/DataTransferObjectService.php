@@ -12,7 +12,7 @@ class DataTransferObjectService
 
         $value = $array[$key];
 
-        if (is_array($value)) {
+        if (is_array($value) || is_bool($value)) {
             return $value;
         }
 
