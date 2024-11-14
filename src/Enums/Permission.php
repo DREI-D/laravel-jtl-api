@@ -28,6 +28,12 @@ enum Permission: string
     case CreateItem = 'item.createitem';
     case UpdateItem = 'item.updateitem';
 
+    // Item Custom Fields
+    case QueryItemCustomFields = 'item.queryitemcustomfields';
+    case QueryItemCustomFieldValues = 'item.queryitemcustomfieldsvalues';
+    case UpdateItemCustomField = 'item.updateitemcustomfield';
+    case DeleteItemCustomField = 'item.deleteitemcustomfield';
+
     // Customers
     case QueryCustomers = 'customer.querycustomers';
     case CreateCustomer = 'customer.createcustomer';

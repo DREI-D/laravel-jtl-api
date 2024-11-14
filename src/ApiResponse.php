@@ -31,7 +31,7 @@ readonly class ApiResponse
             $method,
             $params,
             $headers,
-            $response->json(),
+            $response->json() ?? [],
             $response->successful(),
         );
     }

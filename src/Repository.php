@@ -14,6 +14,7 @@ class Repository
     public const string METHOD_GET = 'get';
     public const string METHOD_POST = 'post';
     public const string METHOD_PATCH = 'patch';
+    public const string METHOD_DELETE = 'delete';
 
     /**
      * @throws MissingApiKeyException
@@ -106,6 +107,38 @@ class Repository
             $response,
             $parsedUri,
             self::METHOD_PATCH,
+            $body,
+            $parsedHeaders
+        );
+    }
+
+    /**
+     * @throws MissingApiKeyException
+     * @throws ConnectionException
+     */
+    protected function delete(
+        string $uri,
+        ?array $body = null,
+        ?array $headers = null,
+    ): ApiResponse {
+        $body ??= [];
+
+        $parsedUri = $this->parseUri($uri);
+        $parsedHeaders = $this->parseHeaders($headers ?? []);
+
+        try {
+            $response = Http::withHeaders($parsedHeaders)->delete(
+                $parsedUri,
+                $body
+            );
+        } catch (\Illuminate\Http\Client\ConnectionException $exception) {
+            throw new ConnectionException($exception);
+        }
+
+        return ApiResponse::fromResponse(
+            $response,
+            $parsedUri,
+            self::METHOD_DELETE,
             $body,
             $parsedHeaders
         );
