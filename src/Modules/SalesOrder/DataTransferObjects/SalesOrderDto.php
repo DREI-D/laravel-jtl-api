@@ -49,7 +49,7 @@ readonly class SalesOrderDto
             $data['IsExternalInvoice'] ?? null,
             $data['Comment'] ?? null,
             $data['CustomerComment'] ?? null,
-            $data['isCancelled'] ?? null,
+            $data['IsCancelled'] ?? null,
             $data['LanguageIso'],
             $data['SalesChannelId'] ?? null,
             $data['UserCreatedId'] ?? null,
