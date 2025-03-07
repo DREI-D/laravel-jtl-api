@@ -11,6 +11,9 @@ enum Permission: string
     // Company
     case QueryCompanies = 'company.querycompanies';
 
+    // On Hold Reasons
+    case QueryOnHoldReasons = 'onholdreason.queryonholdreasons';
+
     // Shipping Methods
     case QueryShippingMethods = 'shippingmethod.queryshippingmethods';
 
@@ -33,6 +36,12 @@ enum Permission: string
     case QueryItemCustomFieldValues = 'item.queryitemcustomfieldsvalues';
     case UpdateItemCustomField = 'item.updateitemcustomfield';
     case DeleteItemCustomField = 'item.deleteitemcustomfield';
+
+    // Sales Order Custom Fields
+    case QuerySalesOrderCustomFields = 'salesorder.querysalesordercustomfields';
+    case QuerySalesOrderCustomFieldValues = 'salesorder.querysalesordercustomfieldvalues';
+    case UpdateSalesOrderCustomField = 'salesorder.updatesalesordercustomfield';
+    case DeleteSalesOrderCustomField = 'salesorder.deletesalesordercustomfield';
 
     // Customers
     case QueryCustomers = 'customer.querycustomers';

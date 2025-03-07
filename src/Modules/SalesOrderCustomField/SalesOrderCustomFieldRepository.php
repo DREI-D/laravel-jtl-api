@@ -1,6 +1,6 @@
 <?php
 
-namespace DREID\LaravelJtlApi\Modules\ItemCustomField;
+namespace DREID\LaravelJtlApi\Modules\SalesOrderCustomField;
 
 use DREID\LaravelJtlApi\Enums\Permission;
 use DREID\LaravelJtlApi\Exceptions\ConnectionException;
@@ -9,16 +9,16 @@ use DREID\LaravelJtlApi\Exceptions\MissingLicenseException;
 use DREID\LaravelJtlApi\Exceptions\MissingPermissionException;
 use DREID\LaravelJtlApi\Exceptions\UnauthorizedException;
 use DREID\LaravelJtlApi\Exceptions\UnhandledResponseException;
-use DREID\LaravelJtlApi\Modules\ItemCustomField\Requests\DeleteItemCustomFieldRequest;
-use DREID\LaravelJtlApi\Modules\ItemCustomField\Requests\QueryItemCustomFieldValuesRequest;
-use DREID\LaravelJtlApi\Modules\ItemCustomField\Requests\UpdateItemCustomFieldRequest;
-use DREID\LaravelJtlApi\Modules\ItemCustomField\Responses\DeleteItemCustomFieldResponse;
-use DREID\LaravelJtlApi\Modules\ItemCustomField\Responses\QueryItemCustomFieldsResponse;
-use DREID\LaravelJtlApi\Modules\ItemCustomField\Responses\QueryItemCustomFieldValuesResponse;
-use DREID\LaravelJtlApi\Modules\ItemCustomField\Responses\UpdateItemCustomFieldResponse;
+use DREID\LaravelJtlApi\Modules\SalesOrderCustomField\Requests\DeleteSalesOrderCustomFieldRequest;
+use DREID\LaravelJtlApi\Modules\SalesOrderCustomField\Requests\QuerySalesOrderCustomFieldValuesRequest;
+use DREID\LaravelJtlApi\Modules\SalesOrderCustomField\Requests\UpdateSalesOrderCustomFieldRequest;
+use DREID\LaravelJtlApi\Modules\SalesOrderCustomField\Responses\DeleteSalesOrderCustomFieldResponse;
+use DREID\LaravelJtlApi\Modules\SalesOrderCustomField\Responses\QuerySalesOrderCustomFieldsResponse;
+use DREID\LaravelJtlApi\Modules\SalesOrderCustomField\Responses\QuerySalesOrderCustomFieldValuesResponse;
+use DREID\LaravelJtlApi\Modules\SalesOrderCustomField\Responses\UpdateSalesOrderCustomFieldResponse;
 use DREID\LaravelJtlApi\Repository;
 
-class ItemCustomFieldRepository extends Repository
+class SalesOrderCustomFieldRepository extends Repository
 {
     /**
      * @throws MissingApiKeyException
@@ -28,18 +28,18 @@ class ItemCustomFieldRepository extends Repository
      * @throws UnhandledResponseException
      * @throws ConnectionException
      */
-    public function queryItemCustomFields(): QueryItemCustomFieldsResponse
+    public function querySalesOrderCustomFields(): QuerySalesOrderCustomFieldsResponse
     {
-        $permissions = [Permission::AllRead, Permission::QueryItemCustomFields];
+        $permissions = [Permission::AllRead, Permission::QuerySalesOrderCustomFields];
 
         if (!Permission::allowsOneOf($permissions)) {
             throw MissingPermissionException::oneOf($permissions);
         }
 
-        $response = $this->get('/v1/items/customfields');
+        $response = $this->get('/v1/salesOrders/customfields');
 
         if ($response->wasSuccessful) {
-            return new QueryItemCustomFieldsResponse($response);
+            return new QuerySalesOrderCustomFieldsResponse($response);
         }
 
         $this->throwExceptionsIfPossible($response);
@@ -54,18 +54,18 @@ class ItemCustomFieldRepository extends Repository
      * @throws MissingApiKeyException
      * @throws MissingLicenseException
      */
-    public function queryItemCustomFieldValues(QueryItemCustomFieldValuesRequest $request): QueryItemCustomFieldValuesResponse
+    public function querySalesOrderCustomFieldValues(QuerySalesOrderCustomFieldValuesRequest $request): QuerySalesOrderCustomFieldValuesResponse
     {
-        $permissions = [Permission::AllRead, Permission::QueryItemCustomFieldValues];
+        $permissions = [Permission::AllRead, Permission::QuerySalesOrderCustomFieldValues];
 
         if (!Permission::allowsOneOf($permissions)) {
             throw MissingPermissionException::oneOf($permissions);
         }
 
-        $response = $this->get('/v1/items/' . $request->itemId . '/customfields');
+        $response = $this->get('/v1/salesOrders/' . $request->salesOrderId . '/customfields');
 
         if ($response->wasSuccessful) {
-            return new QueryItemCustomFieldValuesResponse($response);
+            return new QuerySalesOrderCustomFieldValuesResponse($response);
         }
 
         $this->throwExceptionsIfPossible($response);
@@ -80,20 +80,20 @@ class ItemCustomFieldRepository extends Repository
      * @throws MissingApiKeyException
      * @throws MissingLicenseException
      */
-    public function updateItemCustomField(UpdateItemCustomFieldRequest $request): UpdateItemCustomFieldResponse
+    public function updateSalesOrderCustomField(UpdateSalesOrderCustomFieldRequest $request): UpdateSalesOrderCustomFieldResponse
     {
-        $permissions = [Permission::AllRead, Permission::UpdateItemCustomField];
+        $permissions = [Permission::AllRead, Permission::UpdateSalesOrderCustomField];
 
         if (!Permission::allowsOneOf($permissions)) {
             throw MissingPermissionException::oneOf($permissions);
         }
 
-        $response = $this->patch('/v1/items/' . $request->itemId . '/customfields/' . $request->customFieldId, [
+        $response = $this->patch('/v1/salesOrders/' . $request->salesOrderId . '/customfields/' . $request->customFieldId, [
             'Value' => $request->value,
         ]);
 
         if ($response->wasSuccessful) {
-            return new UpdateItemCustomFieldResponse($response);
+            return new UpdateSalesOrderCustomFieldResponse($response);
         }
 
         $this->throwExceptionsIfPossible($response);
@@ -108,18 +108,18 @@ class ItemCustomFieldRepository extends Repository
      * @throws MissingApiKeyException
      * @throws MissingLicenseException
      */
-    public function deleteItemCustomField(DeleteItemCustomFieldRequest $request): DeleteItemCustomFieldResponse
+    public function deleteSalesOrderCustomField(DeleteSalesOrderCustomFieldRequest $request): DeleteSalesOrderCustomFieldResponse
     {
-        $permissions = [Permission::AllRead, Permission::DeleteItemCustomField];
+        $permissions = [Permission::AllRead, Permission::DeleteSalesOrderCustomField];
 
         if (!Permission::allowsOneOf($permissions)) {
             throw MissingPermissionException::oneOf($permissions);
         }
 
-        $response = $this->delete('/v1/items/' . $request->itemId . '/customfields/' . $request->customFieldId);
+        $response = $this->delete('/v1/salesOrders/' . $request->salesOrderId . '/customfields/' . $request->customFieldId);
 
         if ($response->wasSuccessful) {
-            return new DeleteItemCustomFieldResponse($response);
+            return new DeleteSalesOrderCustomFieldResponse($response);
         }
 
         $this->throwExceptionsIfPossible($response);
