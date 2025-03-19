@@ -37,6 +37,10 @@ enum Permission: string
     case UpdateItemCustomField = 'item.updateitemcustomfield';
     case DeleteItemCustomField = 'item.deleteitemcustomfield';
 
+    // Item Images
+    case QueryItemImages = 'item.queryitemimages';
+    case QueryItemImageData = 'item.queryitemimagedata';
+
     // Sales Order Custom Fields
     case QuerySalesOrderCustomFields = 'salesorder.querysalesordercustomfields';
     case QuerySalesOrderCustomFieldValues = 'salesorder.querysalesordercustomfieldvalues';

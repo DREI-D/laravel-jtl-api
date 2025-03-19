@@ -13,6 +13,7 @@ readonly class ApiResponse
         public string $method,
         public array $params,
         public array $headers,
+        public string $body,
         public array $json = [],
         public bool $wasSuccessful = false,
     ) {}
@@ -31,6 +32,7 @@ readonly class ApiResponse
             $method,
             $params,
             $headers,
+            $response->body(),
             $response->json() ?? [],
             $response->successful(),
         );
