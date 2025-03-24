@@ -3,6 +3,7 @@
 namespace DREID\LaravelJtlApi\Modules\Item\DataTransferObjects;
 
 use DREID\LaravelJtlApi\Services\DataTransferObjectService;
+use Illuminate\Support\Carbon;
 
 readonly class ItemDto
 {
@@ -17,6 +18,9 @@ readonly class ItemDto
         public ?string $shortDescription,
         public ItemIdentifiersDto $identifiers,
         public ItemPriceDataDto $itemPriceData,
+        public ?Carbon $added,
+        public ?Carbon $changed,
+        public ?Carbon $releasedOnDate,
         public ItemStorageOptionsDto $storageOptions,
         public ?string $countryOfOrigin,
         public ItemDimensionsDto $dimensions,
@@ -44,6 +48,9 @@ readonly class ItemDto
             $service->getArrayValue($data, 'ShortDescription'),
             ItemIdentifiersDto::fromResponse($data['Identifiers']),
             ItemPriceDataDto::fromResponse($data['ItemPriceData']),
+            $service->getDateValue($data, 'Added'),
+            $service->getDateValue($data, 'Changed'),
+            $service->getDateValue($data, 'ReleasedOnDate'),
             ItemStorageOptionsDto::fromResponse($data['StorageOptions']),
             $service->getArrayValue($data, 'CountryOfOrigin'),
             ItemDimensionsDto::fromResponse($data['Dimensions']),

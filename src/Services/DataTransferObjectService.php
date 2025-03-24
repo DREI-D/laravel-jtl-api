@@ -2,6 +2,9 @@
 
 namespace DREID\LaravelJtlApi\Services;
 
+use Illuminate\Support\Carbon;
+use Throwable;
+
 class DataTransferObjectService
 {
     public function getArrayValue(array $array, string $key): mixed
@@ -17,5 +20,23 @@ class DataTransferObjectService
         }
 
         return $value ?: null;
+    }
+
+    public function getDateValue(array $array, string $key): ?Carbon
+    {
+        $value = $this->getArrayValue($array, $key);
+
+        if (
+            $value === '0001-01-01T00:00:00+00:00'
+            || $value === null
+        ) {
+            return null;
+        }
+
+        try {
+            return Carbon::parse($value);
+        } catch (Throwable) {
+            return null;
+        }
     }
 }
