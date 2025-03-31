@@ -72,6 +72,10 @@ enum Permission: string
     case CreateSalesOrder = 'salesorder.createsalesorder';
     case CreateSalesOrderLineItem = 'salesorder.createsalesorderlineitem';
 
+    // Sales Order Workflow
+    case QuerySalesOrderWorkflowEvents = 'salesorder.querysalesorderworkflowevents';
+    case TriggerSalesOrderWorkflowEvent = 'salesorder.triggersalesorderworkflowevent';
+
     public function allowed(): bool
     {
         return in_array($this, config('jtl-api.permissions'));
