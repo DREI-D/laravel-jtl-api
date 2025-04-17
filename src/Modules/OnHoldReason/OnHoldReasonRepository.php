@@ -9,7 +9,6 @@ use DREID\LaravelJtlApi\Exceptions\MissingLicenseException;
 use DREID\LaravelJtlApi\Exceptions\MissingPermissionException;
 use DREID\LaravelJtlApi\Exceptions\UnauthorizedException;
 use DREID\LaravelJtlApi\Exceptions\UnhandledResponseException;
-use DREID\LaravelJtlApi\Modules\Company\Responses\QueryCompaniesResponse;
 use DREID\LaravelJtlApi\Modules\OnHoldReason\Responses\QueryOnHoldReasonsResponse;
 use DREID\LaravelJtlApi\Repository;
 

@@ -3,7 +3,6 @@
 namespace DREID\LaravelJtlApi\Modules\ItemImage\Responses;
 
 use DREID\LaravelJtlApi\ApiResponse;
-use DREID\LaravelJtlApi\Modules\ItemImage\DataTransferObjects\ItemImageDto;
 
 readonly class QueryItemImageDataResponse
 {

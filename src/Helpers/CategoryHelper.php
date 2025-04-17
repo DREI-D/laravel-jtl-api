@@ -81,7 +81,7 @@ class CategoryHelper
         return new CategoryTreeDto(
             $category,
             array_map(
-                function(CategoryDto $categoryDto) use ($mapToParent) {
+                function (CategoryDto $categoryDto) use ($mapToParent) {
                     return $this->mapChildren($categoryDto, $mapToParent);
                 },
                 $mapToParent[$category->id] ?? []
