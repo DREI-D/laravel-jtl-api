@@ -33,7 +33,7 @@ class ItemImageRepository extends Repository
             throw MissingPermissionException::oneOf($permissions);
         }
 
-        $response = $this->get('/v1/items/' . $request->itemId . '/images');
+        $response = $this->get('/items/' . $request->itemId . '/images');
 
         if ($response->wasSuccessful) {
             return new QueryItemImagesResponse($response);
@@ -59,7 +59,7 @@ class ItemImageRepository extends Repository
             throw MissingPermissionException::oneOf($permissions);
         }
 
-        $response = $this->get('/v1/items/imagedata/' . $request->imageId);
+        $response = $this->get('/items/imagedata/' . $request->imageId);
 
         if ($response->wasSuccessful) {
             return new QueryItemImageDataResponse($response);

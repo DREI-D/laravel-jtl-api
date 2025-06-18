@@ -30,7 +30,7 @@ class ShippingMethodRepository extends Repository
             throw MissingPermissionException::oneOf($permissions);
         }
 
-        $response = $this->get('/v1/shippingMethods');
+        $response = $this->get('/shippingMethods');
 
         if ($response->wasSuccessful) {
             return new QueryShippingMethodsResponse($response);

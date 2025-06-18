@@ -30,7 +30,7 @@ class CompanyRepository extends Repository
             throw MissingPermissionException::oneOf($permissions);
         }
 
-        $response = $this->get('/v1/companies');
+        $response = $this->get('/companies');
 
         if ($response->wasSuccessful) {
             return new QueryCompaniesResponse($response);

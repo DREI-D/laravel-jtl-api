@@ -24,7 +24,7 @@ class AppRegistrationRepository extends Repository
      */
     public function registerApp(RegisterAppRequest $request): RegisterAppResponse
     {
-        $url = $this->parseUri('/v1/authentication');
+        $url = $this->parseUri('/authentication');
 
         $body = [
             'AppId'                 => $request->appId,
@@ -75,7 +75,7 @@ class AppRegistrationRepository extends Repository
      */
     public function fetchRegistrationStatus(FetchRegistrationStatusRequest $request): FetchRegistrationStatusResponse
     {
-        $url = $this->parseUri('/v1/authentication/' . $request->registrationId);
+        $url = $this->parseUri('/authentication/' . $request->registrationId);
 
         $headers = [
             'X-ChallengeCode' => config('jtl-api.challenge_code')

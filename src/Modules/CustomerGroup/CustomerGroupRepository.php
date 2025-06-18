@@ -30,7 +30,7 @@ class CustomerGroupRepository extends Repository
             throw MissingPermissionException::oneOf($permissions);
         }
 
-        $response = $this->get('/v1/customerGroups');
+        $response = $this->get('/customerGroups');
 
         if ($response->wasSuccessful) {
             return new QueryCustomerGroupsResponse($response);

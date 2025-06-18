@@ -30,7 +30,7 @@ class ColorCodeRepository extends Repository
             throw MissingPermissionException::oneOf($permissions);
         }
 
-        $response = $this->get('/v1/colorCodes');
+        $response = $this->get('/colorCodes');
 
         if ($response->wasSuccessful) {
             return new QueryColorCodesResponse($response);

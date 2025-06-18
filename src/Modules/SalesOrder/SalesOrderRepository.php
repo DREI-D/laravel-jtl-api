@@ -61,7 +61,7 @@ class SalesOrderRepository extends Repository
             'pageSize'               => $request->pageSize,
         ]);
 
-        $response = $this->get('/v1/salesOrders', $params);
+        $response = $this->get('/salesOrders', $params);
 
         if ($response->wasSuccessful) {
             return new QuerySalesOrdersResponse($response);
@@ -114,7 +114,7 @@ class SalesOrderRepository extends Repository
         ];
 
         $body = $this->deleteNullValues($body);
-        $response = $this->post('/v1/salesOrders', $body);
+        $response = $this->post('/salesOrders', $body);
 
         if ($response->wasSuccessful) {
             return new CreateSalesOrderResponse($response);

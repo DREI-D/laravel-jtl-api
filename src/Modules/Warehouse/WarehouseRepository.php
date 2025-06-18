@@ -31,7 +31,7 @@ class WarehouseRepository extends Repository
             throw MissingPermissionException::oneOf($permissions);
         }
 
-        $response = $this->get('/v1/warehouses', [
+        $response = $this->get('/warehouses', [
             'isActive'   => $request->isActive,
             'pageNumber' => $request->pageNumber,
             'pageSize'   => $request->pageSize,

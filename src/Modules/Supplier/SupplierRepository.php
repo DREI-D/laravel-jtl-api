@@ -30,7 +30,7 @@ class SupplierRepository extends Repository
             throw MissingPermissionException::oneOf($permissions);
         }
 
-        $response = $this->get('/v1/suppliers');
+        $response = $this->get('/suppliers');
 
         if ($response->wasSuccessful) {
             return new QuerySuppliersResponse($response);

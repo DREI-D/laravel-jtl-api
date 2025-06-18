@@ -46,7 +46,7 @@ class SalesOrderLineItemRepository extends Repository
         ];
 
         $body = $this->deleteNullValues($body);
-        $response = $this->post('/v1/salesOrders/' . $request->salesOrderId . '/lineitems', [$body]);
+        $response = $this->post('/salesOrders/' . $request->salesOrderId . '/lineitems', [$body]);
 
         if ($response->wasSuccessful) {
             return new CreateSalesOrderLineItemResponse($response);

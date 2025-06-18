@@ -30,7 +30,7 @@ class OnHoldReasonRepository extends Repository
             throw MissingPermissionException::oneOf($permissions);
         }
 
-        $response = $this->get('/v1/onHoldReasons');
+        $response = $this->get('/onHoldReasons');
 
         if ($response->wasSuccessful) {
             return new QueryOnHoldReasonsResponse($response);

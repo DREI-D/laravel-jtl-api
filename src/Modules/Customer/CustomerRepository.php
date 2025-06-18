@@ -38,7 +38,7 @@ class CustomerRepository extends Repository
             throw MissingPermissionException::oneOf($permissions);
         }
 
-        $response = $this->get('/v1/customers', [
+        $response = $this->get('/customers', [
             'searchKeyWord'  => $request->searchKeyWord,
             'number'         => $request->number,
             'groupId'        => $request->groupId,
@@ -97,7 +97,7 @@ class CustomerRepository extends Repository
 
         $body = $this->deleteNullValues($body);
 
-        $response = $this->post('/v1/customers', $body);
+        $response = $this->post('/customers', $body);
 
         if ($response->wasSuccessful) {
             return new CreateCustomerResponse($response);
@@ -147,7 +147,7 @@ class CustomerRepository extends Repository
 
         $body = $this->deleteNullValues($body);
 
-        $response = $this->patch('/v1/customers/' . $request->customerId, $body);
+        $response = $this->patch('/customers/' . $request->customerId, $body);
 
         if ($response->wasSuccessful) {
             return new UpdateCustomerResponse($response);

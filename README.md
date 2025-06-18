@@ -6,6 +6,7 @@ This Laravel package provides a wrapper for the new JTL Wawi API.
 
 - Laravel 11 or 12
 - PHP 8.2 or higher
+- JTL-Wawi 1.10
 
 ## Installation
 

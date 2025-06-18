@@ -36,7 +36,7 @@ class SalesOrderCustomFieldRepository extends Repository
             throw MissingPermissionException::oneOf($permissions);
         }
 
-        $response = $this->get('/v1/salesOrders/customfields');
+        $response = $this->get('/salesOrders/customfields');
 
         if ($response->wasSuccessful) {
             return new QuerySalesOrderCustomFieldsResponse($response);
@@ -62,7 +62,7 @@ class SalesOrderCustomFieldRepository extends Repository
             throw MissingPermissionException::oneOf($permissions);
         }
 
-        $response = $this->get('/v1/salesOrders/' . $request->salesOrderId . '/customfields');
+        $response = $this->get('/salesOrders/' . $request->salesOrderId . '/customfields');
 
         if ($response->wasSuccessful) {
             return new QuerySalesOrderCustomFieldValuesResponse($response);
@@ -88,7 +88,7 @@ class SalesOrderCustomFieldRepository extends Repository
             throw MissingPermissionException::oneOf($permissions);
         }
 
-        $response = $this->patch('/v1/salesOrders/' . $request->salesOrderId . '/customfields/' . $request->customFieldId, [
+        $response = $this->patch('/salesOrders/' . $request->salesOrderId . '/customfields/' . $request->customFieldId, [
             'Value' => $request->value,
         ]);
 
@@ -116,7 +116,7 @@ class SalesOrderCustomFieldRepository extends Repository
             throw MissingPermissionException::oneOf($permissions);
         }
 
-        $response = $this->delete('/v1/salesOrders/' . $request->salesOrderId . '/customfields/' . $request->customFieldId);
+        $response = $this->delete('/salesOrders/' . $request->salesOrderId . '/customfields/' . $request->customFieldId);
 
         if ($response->wasSuccessful) {
             return new DeleteSalesOrderCustomFieldResponse($response);

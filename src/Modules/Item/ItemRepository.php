@@ -42,7 +42,7 @@ class ItemRepository extends Repository
             throw MissingPermissionException::oneOf($permissions);
         }
 
-        $response = $this->get('/v1/items', [
+        $response = $this->get('/items', [
             'searchKeyWord'            => $request->searchKeyWord,
             'categoryId'               => $request->categoryId,
             'manufacturerId'           => $request->manufacturerId,
@@ -78,7 +78,7 @@ class ItemRepository extends Repository
         }
 
         $body = $this->deleteNullValues($this->buildRequestBody($request));
-        $response = $this->post('/v1/items', $body);
+        $response = $this->post('/items', $body);
 
         if ($response->wasSuccessful) {
             return new CreateItemResponse($response);
@@ -105,7 +105,7 @@ class ItemRepository extends Repository
         }
 
         $body = $this->deleteNullValues($this->buildRequestBody($request));
-        $response = $this->patch('/v1/items/' . $request->id, $body);
+        $response = $this->patch('/items/' . $request->id, $body);
 
         if ($response->wasSuccessful) {
             return new UpdateItemResponse($response);

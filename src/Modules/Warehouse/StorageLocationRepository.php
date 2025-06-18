@@ -31,7 +31,7 @@ class StorageLocationRepository extends Repository
             throw MissingPermissionException::oneOf($permissions);
         }
 
-        $response = $this->get('/v1/warehouses/' . $request->warehouseId . '/storagelocations', [
+        $response = $this->get('/warehouses/' . $request->warehouseId . '/storagelocations', [
             'pageNumber' => $request->pageNumber,
             'pageSize'   => $request->pageSize,
         ]);

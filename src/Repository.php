@@ -170,7 +170,6 @@ class Repository
     protected function parseHeaders(array $headers): array
     {
         $headers = $this->addConfigHeaders($headers);
-
         $apiKey = config('jtl-api.api_key');
 
         if (!$apiKey) {
@@ -178,6 +177,10 @@ class Repository
         }
 
         $headers['Authorization'] = 'Wawi ' . $apiKey;
+
+        if (!isset($headers['Api-Version'])) {
+            $headers['Api-Version'] = 1;
+        }
 
         return $headers;
     }

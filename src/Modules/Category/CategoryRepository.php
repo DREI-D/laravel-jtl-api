@@ -33,7 +33,7 @@ class CategoryRepository extends Repository
             throw MissingPermissionException::oneOf($permissions);
         }
 
-        $response = $this->get('/v1/categories', [
+        $response = $this->get('/categories', [
             'pageNumber' => $request->pageNumber,
             'pageSize'   => $request->pageSize,
         ]);
@@ -70,7 +70,7 @@ class CategoryRepository extends Repository
             'ActiveSalesChannels' => $request->activeSalesChannels,
         ]);
 
-        $response = $this->post('/v1/categories', $body);
+        $response = $this->post('/categories', $body);
 
         if ($response->wasSuccessful) {
             return new CreateCategoryResponse($response);
