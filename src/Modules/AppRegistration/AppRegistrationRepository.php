@@ -42,7 +42,8 @@ class AppRegistrationRepository extends Repository
         ];
 
         $headers = [
-            'X-ChallengeCode' => config('jtl-api.challenge_code')
+            'X-ChallengeCode' => config('jtl-api.challenge_code'),
+            'Api-Version'     => 1
         ];
 
         try {
@@ -78,7 +79,8 @@ class AppRegistrationRepository extends Repository
         $url = $this->parseUri('/authentication/' . $request->registrationId);
 
         $headers = [
-            'X-ChallengeCode' => config('jtl-api.challenge_code')
+            'X-ChallengeCode' => config('jtl-api.challenge_code'),
+            'Api-Version'     => 1
         ];
 
         try {
