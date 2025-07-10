@@ -24,17 +24,20 @@ class Repository
         string $uri,
         ?array $query = null,
         ?array $headers = null
-    ): ApiResponse {
+    ): ApiResponse
+    {
         $query ??= [];
 
         $parsedUri = $this->parseUri($uri);
         $parsedHeaders = $this->parseHeaders($headers ?? []);
 
         try {
-            $response = Http::withHeaders($parsedHeaders)->get(
-                $parsedUri,
-                $query
-            );
+            $response = Http::withHeaders($parsedHeaders)
+                ->timeout($this->getTimeout())
+                ->get(
+                    $parsedUri,
+                    $query
+                );
         } catch (\Illuminate\Http\Client\ConnectionException $exception) {
             throw new ConnectionException($exception);
         }
@@ -56,17 +59,20 @@ class Repository
         string $uri,
         ?array $body = null,
         ?array $headers = null,
-    ): ApiResponse {
+    ): ApiResponse
+    {
         $body ??= [];
 
         $parsedUri = $this->parseUri($uri);
         $parsedHeaders = $this->parseHeaders($headers ?? []);
 
         try {
-            $response = Http::withHeaders($parsedHeaders)->post(
-                $parsedUri,
-                $body
-            );
+            $response = Http::withHeaders($parsedHeaders)
+                ->timeout($this->getTimeout())
+                ->post(
+                    $parsedUri,
+                    $body
+                );
         } catch (\Illuminate\Http\Client\ConnectionException $exception) {
             throw new ConnectionException($exception);
         }
@@ -88,17 +94,20 @@ class Repository
         string $uri,
         ?array $body = null,
         ?array $headers = null,
-    ): ApiResponse {
+    ): ApiResponse
+    {
         $body ??= [];
 
         $parsedUri = $this->parseUri($uri);
         $parsedHeaders = $this->parseHeaders($headers ?? []);
 
         try {
-            $response = Http::withHeaders($parsedHeaders)->patch(
-                $parsedUri,
-                $body
-            );
+            $response = Http::withHeaders($parsedHeaders)
+                ->timeout($this->getTimeout())
+                ->patch(
+                    $parsedUri,
+                    $body
+                );
         } catch (\Illuminate\Http\Client\ConnectionException $exception) {
             throw new ConnectionException($exception);
         }
@@ -120,17 +129,20 @@ class Repository
         string $uri,
         ?array $body = null,
         ?array $headers = null,
-    ): ApiResponse {
+    ): ApiResponse
+    {
         $body ??= [];
 
         $parsedUri = $this->parseUri($uri);
         $parsedHeaders = $this->parseHeaders($headers ?? []);
 
         try {
-            $response = Http::withHeaders($parsedHeaders)->delete(
-                $parsedUri,
-                $body
-            );
+            $response = Http::withHeaders($parsedHeaders)
+                ->timeout($this->getTimeout())
+                ->delete(
+                    $parsedUri,
+                    $body
+                );
         } catch (\Illuminate\Http\Client\ConnectionException $exception) {
             throw new ConnectionException($exception);
         }
@@ -200,5 +212,10 @@ class Repository
         }
 
         return $body;
+    }
+
+    protected function getTimeout(): int
+    {
+        return config('jtl-api.timeout', 90);
     }
 }

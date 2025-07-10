@@ -20,6 +20,8 @@ return [
     'app_icon'          => resource_path('vendor/drei-d/laravel-jtl-api/assets/app-icon.png'),
     'registration_type' => 0,
 
+    'timeout' => 90,
+
     'permissions' => [
         Permission::AllRead,
         Permission::StockAdjustment,
