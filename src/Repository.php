@@ -24,8 +24,7 @@ class Repository
         string $uri,
         ?array $query = null,
         ?array $headers = null
-    ): ApiResponse
-    {
+    ): ApiResponse {
         $query ??= [];
 
         $parsedUri = $this->parseUri($uri);
@@ -59,8 +58,7 @@ class Repository
         string $uri,
         ?array $body = null,
         ?array $headers = null,
-    ): ApiResponse
-    {
+    ): ApiResponse {
         $body ??= [];
 
         $parsedUri = $this->parseUri($uri);
@@ -94,8 +92,7 @@ class Repository
         string $uri,
         ?array $body = null,
         ?array $headers = null,
-    ): ApiResponse
-    {
+    ): ApiResponse {
         $body ??= [];
 
         $parsedUri = $this->parseUri($uri);
@@ -129,8 +126,7 @@ class Repository
         string $uri,
         ?array $body = null,
         ?array $headers = null,
-    ): ApiResponse
-    {
+    ): ApiResponse {
         $body ??= [];
 
         $parsedUri = $this->parseUri($uri);
