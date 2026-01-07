@@ -40,6 +40,8 @@ enum Permission: string
     // Item Images
     case QueryItemImages = 'item.queryitemimages';
     case QueryItemImageData = 'item.queryitemimagedata';
+    case CreateItemImage = 'item.createitemimage';
+    case DeleteItemImage = 'item.deleteitemimage';
 
     // Sales Order Custom Fields
     case QuerySalesOrderCustomFields = 'salesorder.querysalesordercustomfields';
