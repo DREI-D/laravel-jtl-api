@@ -8,6 +8,6 @@ readonly class CreateItemImageRequest
         public int $itemId,
         public string $imageData,
         public string $filename,
-        public string $salesChannelId = "1-1-1",
+        public string $salesChannelId = '1-1-1',
     ) {}
 }
