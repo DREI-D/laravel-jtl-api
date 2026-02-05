@@ -198,8 +198,10 @@ class ItemRepository extends Repository
 
     private function mapWeights(?ItemWeightsRequest $weights): ?array
     {
+        /** @noinspection SpellCheckingInspection */
+
         return $weights ? $this->deleteNullValues([
-            'ItemWeight'     => $weights->itemWeight,
+            'ItemWeigth'     => $weights->itemWeight,
             'ShippingWeight' => $weights->shippingWeight,
         ]) : null;
     }
