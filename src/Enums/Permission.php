@@ -78,6 +78,10 @@ enum Permission: string
     case QuerySalesOrderWorkflowEvents = 'salesorder.querysalesorderworkflowevents';
     case TriggerSalesOrderWorkflowEvent = 'salesorder.triggersalesorderworkflowevent';
 
+    // Invoices
+    case InvoicesRead = 'invoices.read';
+    case InvoicesPdf = 'invoice.pdfinvoice';
+
     public function allowed(): bool
     {
         return in_array($this, config('jtl-api.permissions'));
