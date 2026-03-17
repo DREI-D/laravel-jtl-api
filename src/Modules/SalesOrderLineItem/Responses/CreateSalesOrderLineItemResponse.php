@@ -7,10 +7,8 @@ use DREID\LaravelJtlApi\Modules\SalesOrderLineItem\DataTransferObjects\SalesOrde
 
 readonly class CreateSalesOrderLineItemResponse
 {
-    public SalesOrderLineItemDto $salesOrderLineItem;
-
-    public function __construct(public ApiResponse $response)
-    {
-        $this->salesOrderLineItem = SalesOrderLineItemDto::fromResponse($this->response->json[0]);
-    }
+    public function __construct(
+        public ApiResponse $response,
+        public SalesOrderLineItemDto $salesOrderLineItem
+    ) {}
 }
