@@ -17,13 +17,13 @@ readonly class CategoryDto
     public static function fromResponse(array $data): static
     {
         return new self(
-            $data['Id'],
-            $data['Name'],
-            $data['Description'] ?: null,
-            $data['ParentCategoryId'] ?? null,
-            $data['Level'],
-            $data['SortNumber'],
-            $data['ActiveSalesChannels'],
+            $data['id'],
+            $data['name'],
+            $data['description'] ?: null,
+            $data['parentCategoryId'] ?? null,
+            $data['level'],
+            $data['sortNumber'],
+            $data['activeSalesChannels'],
         );
     }
 }

@@ -10,6 +10,9 @@ use DREID\LaravelJtlApi\Console\Commands\List\ListSalesOrderCustomFieldsCommand;
 use DREID\LaravelJtlApi\Console\Commands\List\ListSalesOrderWorkflowsCommand;
 use DREID\LaravelJtlApi\Console\Commands\List\ListShippingMethodsCommand;
 use DREID\LaravelJtlApi\Console\Commands\RegisterCommand;
+use DREID\LaravelJtlApi\Console\Commands\Test\Customer\TestCustomerCreateCommand;
+use DREID\LaravelJtlApi\Console\Commands\Test\Customer\TestCustomerQueryCommand;
+use DREID\LaravelJtlApi\Console\Commands\Test\Customer\TestCustomerUpdateCommand;
 use Illuminate\Support\ServiceProvider as LaravelServiceProvider;
 
 class ServiceProvider extends LaravelServiceProvider
@@ -37,5 +40,13 @@ class ServiceProvider extends LaravelServiceProvider
             ListSalesOrderWorkflowsCommand::class,
             ListShippingMethodsCommand::class,
         ]);
+
+        if ($this->app->hasDebugModeEnabled()) {
+            $this->commands([
+                TestCustomerQueryCommand::class,
+                TestCustomerCreateCommand::class,
+                TestCustomerUpdateCommand::class,
+            ]);
+        }
     }
 }

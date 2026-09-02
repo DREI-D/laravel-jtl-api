@@ -33,7 +33,7 @@ class CategoryRepository extends Repository
             throw MissingPermissionException::oneOf($permissions);
         }
 
-        $response = $this->get('/v1/categories', [
+        $response = $this->get('/categories', [
             'pageNumber' => $request->pageNumber,
             'pageSize'   => $request->pageSize,
         ]);

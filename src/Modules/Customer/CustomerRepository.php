@@ -38,7 +38,7 @@ class CustomerRepository extends Repository
             throw MissingPermissionException::oneOf($permissions);
         }
 
-        $response = $this->get('/v1/customers', [
+        $response = $this->get('/customers', [
             'searchKeyWord'  => $request->searchKeyWord,
             'number'         => $request->number,
             'groupId'        => $request->groupId,
@@ -73,31 +73,8 @@ class CustomerRepository extends Repository
             throw MissingPermissionException::oneOf($permissions);
         }
 
-        $body = [
-            'Number'                   => $request->number,
-            'CustomerGroupId'          => $request->customerGroupId,
-            'BillingAddress'           => $this->mapAddress($request->billingAddress),
-            'Shipmentaddress'          => $this->mapAddress($request->shipmentAddress),
-            'CustomAddress'            => $this->mapAddress($request->customAddress),
-            'CustomerSince'            => $request->customerSince,
-            'LastChange'               => $request->lastChange,
-            'LanguageIso'              => $request->languageIso,
-            'InternalCompanyId'        => $request->internalCompanyId,
-            'CustomerCategoryId'       => $request->customerCategoryId,
-            'TaxIdentificationNumber'  => $request->taxIdentificationNumber,
-            'AccountsReceivableNumber' => $request->accountsReceivableNumber,
-            'CommercialRegisterNumber' => $request->commercialRegisterNumber,
-            'Website'                  => $request->website,
-            'InitialContact'           => $request->initialContact,
-            'EbayUsername'             => $request->ebayUsername,
-            'Birthday'                 => $request->birthday,
-            'IsLocked'                 => $request->isLocked,
-            'IsCashRegisterBased'      => $request->isCashRegisterBased,
-        ];
-
-        $body = $this->deleteNullValues($body);
-
-        $response = $this->post('/v1/customers', $body);
+        $body = $this->buildCustomerBody($request);
+        $response = $this->post('/customers', $body);
 
         if ($response->wasSuccessful) {
             return new CreateCustomerResponse($response);
@@ -123,31 +100,8 @@ class CustomerRepository extends Repository
             throw MissingPermissionException::oneOf($permissions);
         }
 
-        $body = [
-            'Number'                   => $request->number,
-            'CustomerGroupId'          => $request->customerGroupId,
-            'BillingAddress'           => $this->mapAddress($request->billingAddress),
-            'Shipmentaddress'          => $this->mapAddress($request->shipmentAddress),
-            'CustomAddress'            => $this->mapAddress($request->customAddress),
-            'CustomerSince'            => $request->customerSince,
-            'LastChange'               => $request->lastChange,
-            'LanguageIso'              => $request->languageIso,
-            'InternalCompanyId'        => $request->internalCompanyId,
-            'CustomerCategoryId'       => $request->customerCategoryId,
-            'TaxIdentificationNumber'  => $request->taxIdentificationNumber,
-            'AccountsReceivableNumber' => $request->accountsReceivableNumber,
-            'CommercialRegisterNumber' => $request->commercialRegisterNumber,
-            'Website'                  => $request->website,
-            'InitialContact'           => $request->initialContact,
-            'EbayUsername'             => $request->ebayUsername,
-            'Birthday'                 => $request->birthday,
-            'IsLocked'                 => $request->isLocked,
-            'IsCashRegisterBased'      => $request->isCashRegisterBased,
-        ];
-
-        $body = $this->deleteNullValues($body);
-
-        $response = $this->patch('/v1/customers/' . $request->customerId, $body);
+        $body = $this->buildCustomerBody($request);
+        $response = $this->patch('/customers/' . $request->customerId, $body);
 
         if ($response->wasSuccessful) {
             return new UpdateCustomerResponse($response);
@@ -155,5 +109,23 @@ class CustomerRepository extends Repository
 
         $this->throwExceptionsIfPossible($response);
         throw new UnhandledResponseException($response);
+    }
+
+    private function buildCustomerBody(CreateCustomerRequest|UpdateCustomerRequest $request): array
+    {
+        return $this->deleteNullValues([
+            'Number'                  => $request->number,
+            'CustomerGroupId'         => $request->customerGroupId,
+            'BillingAddress'          => $this->mapAddress($request->billingAddress),
+            'Shipmentaddress'         => $this->mapAddress($request->shipmentAddress),
+            'CustomerSince'           => $request->customerSince,
+            'LastChange'              => $request->lastChange,
+            'LanguageIso'             => $request->languageIso,
+            'InternalCompanyId'       => $request->internalCompanyId,
+            'CustomerCategoryId'      => $request->customerCategoryId,
+            'TaxIdentificationNumber' => $request->taxIdentificationNumber,
+            'Birthday'                => $request->birthday,
+            'IsLocked'                => $request->isLocked,
+        ]);
     }
 }

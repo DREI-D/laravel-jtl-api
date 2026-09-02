@@ -17,13 +17,13 @@ readonly class PaginatedResponse
         public ApiResponse $response,
         public array $items
     ) {
-        $this->totalItems = $this->response->json['TotalItems'];
-        $this->pageNumber = $this->response->json['PageNumber'];
-        $this->pageSize = $this->response->json['PageSize'];
-        $this->totalPages = $this->response->json['TotalPages'];
-        $this->hasPreviousPage = $this->response->json['HasPreviousPage'];
-        $this->hasNextPage = $this->response->json['HasNextPage'];
-        $this->nextPageNumber = $this->response->json['NextPageNumber'];
-        $this->previousPageNumber = $this->response->json['PreviousPageNumber'];
+        $this->totalItems = $this->response->json['totalItems'];
+        $this->pageNumber = $this->response->json['pageNumber'];
+        $this->pageSize = $this->response->json['pageSize'];
+        $this->totalPages = $this->response->json['totalPages'];
+        $this->hasPreviousPage = $this->response->json['hasPreviousPage'];
+        $this->hasNextPage = $this->response->json['hasNextPage'];
+        $this->nextPageNumber = $this->response->json['nextPageNumber'];
+        $this->previousPageNumber = $this->response->json['previousPageNumber'];
     }
 }

@@ -11,7 +11,7 @@ readonly class TokenDto
     public static function fromResponse(array $data): static
     {
         return new self(
-            $data['ApiKey'],
+            $data['apiKey'],
         );
     }
 }

@@ -12,8 +12,8 @@ readonly class CompanyDto
     public static function fromResponse(array $data): static
     {
         return new self(
-            $data['Id'],
-            $data['Name'],
+            $data['id'],
+            $data['name'],
         );
     }
 }

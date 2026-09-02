@@ -13,10 +13,10 @@ readonly class FetchRegistrationStatusResponse
 
     public function __construct(public ApiResponse $response)
     {
-        $this->requestStatusInfo = RegistrationStatusDto::fromResponse($this->response->json['RequestStatusInfo']);
+        $this->requestStatusInfo = RegistrationStatusDto::fromResponse($this->response->json['requestStatusInfo']);
 
-        $this->token = isset($this->response->json['Token'])
-            ? TokenDto::fromResponse($this->response->json['Token'])
+        $this->token = isset($this->response->json['token'])
+            ? TokenDto::fromResponse($this->response->json['token'])
             : null;
     }
 }

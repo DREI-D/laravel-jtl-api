@@ -12,6 +12,6 @@ readonly class QueryCategoriesResponse extends PaginatedResponse
     {
         parent::__construct($response, array_map(static function ($item) {
             return CategoryDto::fromResponse($item);
-        }, $response->json['Items']));
+        }, $response->json['items']));
     }
 }

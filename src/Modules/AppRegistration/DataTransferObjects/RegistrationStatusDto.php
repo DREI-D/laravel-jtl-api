@@ -13,9 +13,9 @@ readonly class RegistrationStatusDto
     public static function fromResponse(array $data): static
     {
         return new self(
-            $data['AppId'],
-            $data['RegistrationRequestId'],
-            $data['Status'],
+            $data['appId'],
+            $data['registrationRequestId'],
+            $data['status'],
         );
     }
 }
