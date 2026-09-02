@@ -20,9 +20,9 @@ return [
     'app_icon'          => resource_path('vendor/drei-d/laravel-jtl-api/assets/app-icon.png'),
     'registration_type' => 0,
 
-    'timeout' => 90,
+    'timeout'           => 90,
 
-    'permissions' => [
+    'permissions'       => [
         Permission::AllRead,
         Permission::StockAdjustment,
         Permission::CreateSalesOrder,
@@ -32,5 +32,5 @@ return [
         Permission::CreateCategory,
         Permission::CreateItem,
         Permission::UpdateItem,
-    ]
+    ],
 ];
