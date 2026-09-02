@@ -78,6 +78,6 @@ class TestCustomerUpdateCommand extends Command
             )
         );
 
-        dd($response);
+        dd($response->customer);
     }
 }

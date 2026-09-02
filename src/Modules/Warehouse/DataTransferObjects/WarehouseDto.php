@@ -19,15 +19,15 @@ readonly class WarehouseDto
     public static function fromResponse(array $data): static
     {
         return new self(
-            $data['Id'],
-            $data['Name'],
-            $data['Code'] ?? null,
-            $data['Description'] ?? null,
-            $data['Priority'] ?? null,
-            $data['CompanyId'] ?? null,
-            $data['LockForShipment'],
-            $data['LockForAvailability'],
-            $data['IsActive'],
+            $data['id'],
+            $data['name'],
+            $data['code'] ?? null,
+            $data['description'] ?? null,
+            $data['priority'] ?? null,
+            $data['companyId'] ?? null,
+            $data['lockForShipment'],
+            $data['lockForAvailability'],
+            $data['isActive'],
         );
     }
 }

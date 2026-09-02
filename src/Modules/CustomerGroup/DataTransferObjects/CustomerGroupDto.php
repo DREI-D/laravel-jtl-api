@@ -15,11 +15,11 @@ readonly class CustomerGroupDto
     public static function fromResponse(array $data): static
     {
         return new self(
-            $data['Id'],
-            $data['Name'],
-            $data['IsDefault'],
-            $data['Discount'],
-            $data['IsNetPrice'],
+            $data['id'],
+            $data['name'],
+            $data['isDefault'],
+            $data['discount'],
+            $data['isNetPrice'],
         );
     }
 }

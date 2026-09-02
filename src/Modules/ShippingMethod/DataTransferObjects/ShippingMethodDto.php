@@ -16,12 +16,12 @@ readonly class ShippingMethodDto
     public static function fromResponse(array $data): static
     {
         return new self(
-            $data['Id'],
-            $data['Name'],
-            $data['Priority'],
-            $data['GrossPrice'],
-            $data['ExtraWeight'],
-            $data['IsAmazonPrime'],
+            $data['id'],
+            $data['name'],
+            $data['priority'],
+            $data['grossPrice'],
+            $data['extraWeight'],
+            $data['isAmazonPrime'],
         );
     }
 }

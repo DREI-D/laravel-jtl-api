@@ -21,7 +21,7 @@ class InfoRepository extends Repository
      */
     public function getStatus(): GetStatusResponse
     {
-        $response = $this->get('/v1/info');
+        $response = $this->get('/info');
 
         if ($response->wasSuccessful) {
             return new GetStatusResponse($response);

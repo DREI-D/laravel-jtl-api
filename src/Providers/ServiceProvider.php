@@ -13,6 +13,9 @@ use DREID\LaravelJtlApi\Console\Commands\RegisterCommand;
 use DREID\LaravelJtlApi\Console\Commands\Test\Customer\TestCustomerCreateCommand;
 use DREID\LaravelJtlApi\Console\Commands\Test\Customer\TestCustomerQueryCommand;
 use DREID\LaravelJtlApi\Console\Commands\Test\Customer\TestCustomerUpdateCommand;
+use DREID\LaravelJtlApi\Console\Commands\Test\Customer\TestInfoStatusCommand;
+use DREID\LaravelJtlApi\Console\Commands\Test\Customer\TestStorageLocationQueryCommand;
+use DREID\LaravelJtlApi\Console\Commands\Test\Customer\TestWarehouseQueryCommand;
 use Illuminate\Support\ServiceProvider as LaravelServiceProvider;
 
 class ServiceProvider extends LaravelServiceProvider
@@ -46,6 +49,9 @@ class ServiceProvider extends LaravelServiceProvider
                 TestCustomerQueryCommand::class,
                 TestCustomerCreateCommand::class,
                 TestCustomerUpdateCommand::class,
+                TestInfoStatusCommand::class,
+                TestStorageLocationQueryCommand::class,
+                TestWarehouseQueryCommand::class,
             ]);
         }
     }

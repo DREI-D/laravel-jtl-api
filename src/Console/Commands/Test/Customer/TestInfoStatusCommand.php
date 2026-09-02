@@ -8,15 +8,14 @@ use DREID\LaravelJtlApi\Exceptions\MissingLicenseException;
 use DREID\LaravelJtlApi\Exceptions\MissingPermissionException;
 use DREID\LaravelJtlApi\Exceptions\UnauthorizedException;
 use DREID\LaravelJtlApi\Exceptions\UnhandledResponseException;
-use DREID\LaravelJtlApi\Modules\Customer\CustomerRepository;
-use DREID\LaravelJtlApi\Modules\Customer\Requests\QueryCustomersRequest;
+use DREID\LaravelJtlApi\Modules\Info\InfoRepository;
 use Illuminate\Console\Command;
 
-class TestCustomerQueryCommand extends Command
+class TestInfoStatusCommand extends Command
 {
-    protected $signature = 'jtl-api:test:customer-query';
+    protected $signature = 'jtl-api:test:info-status';
 
-    protected $description = 'Tests the customer query endpoint';
+    protected $description = 'Tests the info status endpoint';
 
     /**
      * @throws UnhandledResponseException
@@ -28,8 +27,6 @@ class TestCustomerQueryCommand extends Command
      */
     public function handle(): void
     {
-        $response = app(CustomerRepository::class)->queryCustomers(new QueryCustomersRequest());
-
-        dd($response->items);
+        dd(app(InfoRepository::class)->getStatus()->info);
     }
 }

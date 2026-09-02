@@ -22,14 +22,14 @@ readonly class StorageLocationDto
         $service = app(DataTransferObjectService::class);
 
         return new self(
-            $data['Id'],
-            $data['WarehouseId'],
-            $data['Name'],
-            $service->getArrayValue($data, 'SortNumber'),
-            $service->getArrayValue($data, 'Priority'),
-            $service->getArrayValue($data, 'LockForShipment'),
-            $service->getArrayValue($data, 'LockForAvailability'),
-            $service->getArrayValue($data, 'Comment'),
+            $data['id'],
+            $data['warehouseId'],
+            $data['name'],
+            $service->getArrayValue($data, 'sortNumber'),
+            $service->getArrayValue($data, 'priority'),
+            $service->getArrayValue($data, 'lockForShipment'),
+            $service->getArrayValue($data, 'lockForAvailability'),
+            $service->getArrayValue($data, 'comment'),
         );
     }
 }

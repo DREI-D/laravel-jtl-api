@@ -12,6 +12,6 @@ readonly class QueryWarehousesResponse extends PaginatedResponse
     {
         parent::__construct($response, array_map(static function ($item) {
             return WarehouseDto::fromResponse($item);
-        }, $response->json['Items']));
+        }, $response->json['items']));
     }
 }

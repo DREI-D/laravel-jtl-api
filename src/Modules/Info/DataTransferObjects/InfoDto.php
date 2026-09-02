@@ -19,10 +19,10 @@ readonly class InfoDto
         $service = app(DataTransferObjectService::class);
 
         return new self(
-            $data['Version'],
-            $service->getDateValue($data, 'Timestamp'),
-            $data['Tenant'],
-            $data['Type'],
+            $data['version'],
+            $service->getDateValue($data, 'timestamp'),
+            $data['tenant'],
+            $data['type'],
         );
     }
 }

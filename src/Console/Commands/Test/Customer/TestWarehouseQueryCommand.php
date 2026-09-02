@@ -8,15 +8,15 @@ use DREID\LaravelJtlApi\Exceptions\MissingLicenseException;
 use DREID\LaravelJtlApi\Exceptions\MissingPermissionException;
 use DREID\LaravelJtlApi\Exceptions\UnauthorizedException;
 use DREID\LaravelJtlApi\Exceptions\UnhandledResponseException;
-use DREID\LaravelJtlApi\Modules\Customer\CustomerRepository;
-use DREID\LaravelJtlApi\Modules\Customer\Requests\QueryCustomersRequest;
+use DREID\LaravelJtlApi\Modules\Warehouse\Requests\QueryWarehousesRequest;
+use DREID\LaravelJtlApi\Modules\Warehouse\WarehouseRepository;
 use Illuminate\Console\Command;
 
-class TestCustomerQueryCommand extends Command
+class TestWarehouseQueryCommand extends Command
 {
-    protected $signature = 'jtl-api:test:customer-query';
+    protected $signature = 'jtl-api:test:warehouse-query';
 
-    protected $description = 'Tests the customer query endpoint';
+    protected $description = 'Tests the warehouse query endpoint';
 
     /**
      * @throws UnhandledResponseException
@@ -28,7 +28,7 @@ class TestCustomerQueryCommand extends Command
      */
     public function handle(): void
     {
-        $response = app(CustomerRepository::class)->queryCustomers(new QueryCustomersRequest());
+        $response = app(WarehouseRepository::class)->queryWarehouses(new QueryWarehousesRequest());
 
         dd($response->items);
     }

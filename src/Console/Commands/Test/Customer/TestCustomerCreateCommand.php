@@ -66,6 +66,6 @@ class TestCustomerCreateCommand extends Command
             )
         );
 
-        dd($response);
+        dd($response->customer);
     }
 }
