@@ -14,10 +14,10 @@ readonly class SalesOrderCustomFieldDto
     public static function fromResponse(array $data): static
     {
         return new self(
-            $data['CustomFieldId'],
-            $data['GroupName'],
-            $data['Name'],
-            $data['Type'],
+            $data['customFieldId'],
+            $data['groupName'],
+            $data['name'],
+            $data['type'],
         );
     }
 }

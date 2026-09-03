@@ -34,13 +34,7 @@ class TestSalesOrderLineItemCreateCommand extends Command
      */
     public function handle(): void
     {
-        $response = app(SalesOrderRepository::class)->querySalesOrders(
-            new QuerySalesOrdersRequest(
-                salesOrderNumber: 'TEST-zgQD5V2eOWSvfPVR',
-                pageSize: 1
-            )
-        );
-
+        $response = app(SalesOrderRepository::class)->querySalesOrders(new QuerySalesOrdersRequest(pageSize: 1));
         throw_if($response->totalItems === 0);
 
         /** @var SalesOrderDto $salesOrder */

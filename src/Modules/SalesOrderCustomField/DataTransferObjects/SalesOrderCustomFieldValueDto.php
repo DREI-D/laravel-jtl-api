@@ -16,8 +16,8 @@ readonly class SalesOrderCustomFieldValueDto
         $service = app(DataTransferObjectService::class);
 
         return new self(
-            $data['CustomFieldId'],
-            $service->getArrayValue($data, 'Value'),
+            $data['customFieldId'],
+            $service->getArrayValue($data, 'value'),
         );
     }
 }
