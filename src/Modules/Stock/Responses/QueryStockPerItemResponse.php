@@ -12,7 +12,7 @@ readonly class QueryStockPerItemResponse extends PaginatedResponse
     {
         $items = array_map(static function ($item) {
             return StockDto::fromResponse($item);
-        }, $response->json['Items']);
+        }, $response->json['items']);
 
         parent::__construct($response, $items);
     }

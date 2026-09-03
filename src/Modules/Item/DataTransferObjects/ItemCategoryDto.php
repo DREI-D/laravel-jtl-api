@@ -12,8 +12,8 @@ readonly class ItemCategoryDto
     public static function fromResponse(array $data): static
     {
         return new self(
-            $data['CategoryId'],
-            $data['Name'],
+            $data['categoryId'],
+            $data['name'],
         );
     }
 }

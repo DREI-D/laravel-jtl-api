@@ -14,7 +14,6 @@ readonly class CreateItemRequest
     public function __construct(
         public string $name,
         public ?string $sku = null,
-        public ?int $manufacturerId = null,
         public array $categories = [],
         public ?string $description = null,
         public ?string $shortDescription = null,

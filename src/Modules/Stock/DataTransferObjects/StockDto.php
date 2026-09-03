@@ -20,16 +20,16 @@ readonly class StockDto
     public static function fromResponse(array $data): static
     {
         return new static(
-            $data['WarehouseId'],
-            $data['StorageLocationId'],
-            $data['StorageLocationName'],
-            $data['ItemId'],
-            $data['ShelfLifeExpirationDate'] ?? null,
-            $data['BatchNumber'] ?? null,
-            $data['QuantityTotal'],
-            $data['QuantityLockedForShipment'],
-            $data['QuantityLockedForAvailability'],
-            $data['QuantityInPickingLists'],
+            $data['warehouseId'],
+            $data['storageLocationId'],
+            $data['storageLocationName'],
+            $data['itemId'],
+            $data['shelfLifeExpirationDate'] ?? null,
+            $data['batchNumber'] ?? null,
+            $data['quantityTotal'],
+            $data['quantityLockedForShipment'],
+            $data['quantityLockedForAvailability'],
+            $data['quantityInPickingLists'],
         );
     }
 }

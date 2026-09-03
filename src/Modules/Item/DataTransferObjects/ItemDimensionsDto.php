@@ -13,9 +13,9 @@ readonly class ItemDimensionsDto
     public static function fromResponse(array $data): static
     {
         return new self(
-            $data['Length'],
-            $data['Width'],
-            $data['Height'],
+            $data['length'],
+            $data['width'],
+            $data['height'],
         );
     }
 }

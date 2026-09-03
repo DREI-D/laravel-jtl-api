@@ -21,13 +21,13 @@ readonly class ItemIdentifiersDto
         $service = app(DataTransferObjectService::class);
 
         return new self(
-            $service->getArrayValue($data, 'Gtin'),
-            $service->getArrayValue($data, 'ManufacturerNumber'),
-            $service->getArrayValue($data, 'ISBN'),
-            $service->getArrayValue($data, 'UPC'),
-            $service->getArrayValue($data, 'AmazonFnsku'),
-            $service->getArrayValue($data, 'Asins'),
-            $service->getArrayValue($data, 'OwnIdentifier'),
+            $service->getArrayValue($data, 'gtin'),
+            $service->getArrayValue($data, 'manufacturerNumber'),
+            $service->getArrayValue($data, 'isbn'),
+            $service->getArrayValue($data, 'upc'),
+            $service->getArrayValue($data, 'amazonFnsku'),
+            $service->getArrayValue($data, 'asins'),
+            $service->getArrayValue($data, 'ownIdentifier'),
         );
     }
 }

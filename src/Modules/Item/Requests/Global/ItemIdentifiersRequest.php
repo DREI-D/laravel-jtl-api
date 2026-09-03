@@ -10,7 +10,7 @@ readonly class ItemIdentifiersRequest
         public ?string $isbn = null,
         public ?string $upc = null,
         public ?string $amazonFnsku = null,
-        public ?string $asins = null,
+        public ?array $asins = null,
         public ?string $ownIdentifier = null,
     ) {}
 }

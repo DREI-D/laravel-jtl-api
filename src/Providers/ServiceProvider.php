@@ -13,9 +13,15 @@ use DREID\LaravelJtlApi\Console\Commands\RegisterCommand;
 use DREID\LaravelJtlApi\Console\Commands\Test\Customer\TestCustomerCreateCommand;
 use DREID\LaravelJtlApi\Console\Commands\Test\Customer\TestCustomerQueryCommand;
 use DREID\LaravelJtlApi\Console\Commands\Test\Customer\TestCustomerUpdateCommand;
-use DREID\LaravelJtlApi\Console\Commands\Test\Customer\TestInfoStatusCommand;
-use DREID\LaravelJtlApi\Console\Commands\Test\Customer\TestStorageLocationQueryCommand;
-use DREID\LaravelJtlApi\Console\Commands\Test\Customer\TestWarehouseQueryCommand;
+use DREID\LaravelJtlApi\Console\Commands\Test\Info\TestInfoStatusCommand;
+use DREID\LaravelJtlApi\Console\Commands\Test\Item\TestItemCreateCommand;
+use DREID\LaravelJtlApi\Console\Commands\Test\Item\TestItemQueryCommand;
+use DREID\LaravelJtlApi\Console\Commands\Test\Item\TestItemUpdateCommand;
+use DREID\LaravelJtlApi\Console\Commands\Test\Stock\TestStockAdjustmentCommand;
+use DREID\LaravelJtlApi\Console\Commands\Test\Stock\TestStockChangesQueryCommand;
+use DREID\LaravelJtlApi\Console\Commands\Test\Stock\TestStockQueryCommand;
+use DREID\LaravelJtlApi\Console\Commands\Test\Warehouse\TestStorageLocationQueryCommand;
+use DREID\LaravelJtlApi\Console\Commands\Test\Warehouse\TestWarehouseQueryCommand;
 use Illuminate\Support\ServiceProvider as LaravelServiceProvider;
 
 class ServiceProvider extends LaravelServiceProvider
@@ -50,6 +56,12 @@ class ServiceProvider extends LaravelServiceProvider
                 TestCustomerCreateCommand::class,
                 TestCustomerUpdateCommand::class,
                 TestInfoStatusCommand::class,
+                TestItemQueryCommand::class,
+                TestItemCreateCommand::class,
+                TestItemUpdateCommand::class,
+                TestStockAdjustmentCommand::class,
+                TestStockChangesQueryCommand::class,
+                TestStockQueryCommand::class,
                 TestStorageLocationQueryCommand::class,
                 TestWarehouseQueryCommand::class,
             ]);

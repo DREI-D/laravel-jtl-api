@@ -15,11 +15,11 @@ readonly class ItemPriceDataDto
     public static function fromResponse(array $data): static
     {
         return new self(
-            $data['SalesPriceNet'],
-            $data['SuggestedRetailPrice'],
-            $data['PurchasePriceNet'],
-            $data['EbayPrice'],
-            $data['AmazonPrice'],
+            $data['salesPriceNet'],
+            $data['suggestedRetailPrice'],
+            $data['purchasePriceNet'],
+            $data['ebayPrice'],
+            $data['amazonPrice'],
         );
     }
 }

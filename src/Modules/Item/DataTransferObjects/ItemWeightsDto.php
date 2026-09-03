@@ -13,8 +13,8 @@ readonly class ItemWeightsDto
     {
         /** @noinspection SpellCheckingInspection */
         return new self(
-            $data['ItemWeigth'],
-            $data['ShippingWeight'],
+            $data['itemWeigth'],
+            $data['shippingWeight'],
         );
     }
 }

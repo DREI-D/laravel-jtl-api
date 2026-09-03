@@ -35,7 +35,7 @@ class StockRepository extends Repository
             throw MissingPermissionException::oneOf($permissions);
         }
 
-        $response = $this->get('/v1/stocks', [
+        $response = $this->get('/stocks', [
             'itemId'            => $request->itemId,
             'warehouseId'       => $request->warehouseId,
             'storageLocationId' => $request->storageLocationId,
@@ -68,17 +68,17 @@ class StockRepository extends Repository
         }
 
         $body = $this->deleteNullValues([
-            'WarehouseId'       => $request->warehouseId,
-            'ItemId'            => $request->itemId,
-            'Quantity'          => $request->quantity,
-            'StorageLocationId' => $request->storageLocationId,
-            'BatchNumber'       => $request->batchNumber,
-            'PurchasePriceNet'  => $request->purchasePriceNet,
-            'SerialNumbers'     => $request->serialNumbers,
-            'Comment'           => $request->comment,
+            'warehouseId'       => $request->warehouseId,
+            'itemId'            => $request->itemId,
+            'quantity'          => $request->quantity,
+            'storageLocationId' => $request->storageLocationId,
+            'batchNumber'       => $request->batchNumber,
+            'purchasePriceNet'  => $request->purchasePriceNet,
+            'serialNumbers'     => $request->serialNumbers,
+            'comment'           => $request->comment,
         ]);
 
-        $response = $this->post('/v1/stocks', $body);
+        $response = $this->post('/stocks', $body);
 
         if ($response->wasSuccessful) {
             return new StockAdjustmentResponse($response);
@@ -104,7 +104,7 @@ class StockRepository extends Repository
             throw MissingPermissionException::oneOf($permissions);
         }
 
-        $response = $this->get('/v1/stocks/changes', [
+        $response = $this->get('/stocks/changes', [
             'itemId'     => $request->itemId,
             'startDate'  => $request->startDate,
             'pageNumber' => $request->pageNumber,

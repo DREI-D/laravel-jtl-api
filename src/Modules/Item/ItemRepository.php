@@ -42,7 +42,7 @@ class ItemRepository extends Repository
             throw MissingPermissionException::oneOf($permissions);
         }
 
-        $response = $this->get('/v1/items', [
+        $response = $this->get('/items', [
             'searchKeyWord'            => $request->searchKeyWord,
             'categoryId'               => $request->categoryId,
             'manufacturerId'           => $request->manufacturerId,
@@ -78,7 +78,7 @@ class ItemRepository extends Repository
         }
 
         $body = $this->deleteNullValues($this->buildRequestBody($request));
-        $response = $this->post('/v1/items', $body);
+        $response = $this->post('/items', $body);
 
         if ($response->wasSuccessful) {
             return new CreateItemResponse($response);
@@ -105,7 +105,7 @@ class ItemRepository extends Repository
         }
 
         $body = $this->deleteNullValues($this->buildRequestBody($request));
-        $response = $this->patch('/v1/items/' . $request->id, $body);
+        $response = $this->patch('/items/' . $request->id, $body);
 
         if ($response->wasSuccessful) {
             return new UpdateItemResponse($response);
@@ -118,22 +118,21 @@ class ItemRepository extends Repository
     private function buildRequestBody(CreateItemRequest|UpdateItemRequest $request): array
     {
         return [
-            'SKU'                => $request->sku,
-            'ManufacturerId'     => $request->manufacturerId,
-            'Categories'         => $request->categories ? $this->mapCategories($request->categories) : null,
-            'Name'               => $request->name,
-            'Description'        => $request->description,
-            'ShortDescription'   => $request->shortDescription,
-            'Identifiers'        => $this->mapIdentifiers($request->identifiers),
-            'ItemPriceData'      => $this->mapItemPriceData($request->itemPriceData),
-            'StorageOptions'     => $this->mapStorageOptions($request->storageOptions),
-            'CountryOfOrigin'    => $request->countryOfOrigin,
-            'Dimensions'         => $this->mapDimensions($request->dimensions),
-            'Weights'            => $this->mapWeights($request->weights),
-            'AllowNegativeStock' => $request->allowNegativeStock,
-            'DangerousGoods'     => $this->mapDangerousGoods($request->dangerousGoods),
-            'Taric'              => $request->taric,
-            'SearchTerms'        => $request->searchTerms,
+            'sku'                => $request->sku,
+            'categories'         => $request->categories ? $this->mapCategories($request->categories) : null,
+            'name'               => $request->name,
+            'description'        => $request->description,
+            'shortDescription'   => $request->shortDescription,
+            'identifiers'        => $this->mapIdentifiers($request->identifiers),
+            'itemPriceData'      => $this->mapItemPriceData($request->itemPriceData),
+            'storageOptions'     => $this->mapStorageOptions($request->storageOptions),
+            'countryOfOrigin'    => $request->countryOfOrigin,
+            'dimensions'         => $this->mapDimensions($request->dimensions),
+            'weights'            => $this->mapWeights($request->weights),
+            'allowNegativeStock' => $request->allowNegativeStock,
+            'dangerousGoods'     => $this->mapDangerousGoods($request->dangerousGoods),
+            'taric'              => $request->taric,
+            'searchTerms'        => $request->searchTerms,
         ];
     }
 
@@ -141,7 +140,7 @@ class ItemRepository extends Repository
     {
         return array_map(function (ItemCategoryRequest $categoryRequest) {
             return [
-                'CategoryId' => $categoryRequest->categoryId
+                'categoryId' => $categoryRequest->categoryId,
             ];
         }, $categories);
     }
@@ -149,50 +148,50 @@ class ItemRepository extends Repository
     private function mapIdentifiers(?ItemIdentifiersRequest $identifiers): ?array
     {
         return $identifiers ? $this->deleteNullValues([
-            'Gtin'               => $identifiers->gtin,
-            'ManufacturerNumber' => $identifiers->manufacturerNumber,
-            'ISBN'               => $identifiers->isbn,
-            'UPC'                => $identifiers->upc,
-            'AmazonFnsku'        => $identifiers->amazonFnsku,
-            'Asins'              => $identifiers->asins,
-            'OwnIdentifier'      => $identifiers->ownIdentifier,
+            'gtin'               => $identifiers->gtin,
+            'manufacturerNumber' => $identifiers->manufacturerNumber,
+            'isbn'               => $identifiers->isbn,
+            'upc'                => $identifiers->upc,
+            'amazonFnsku'        => $identifiers->amazonFnsku,
+            'asins'              => $identifiers->asins,
+            'ownIdentifier'      => $identifiers->ownIdentifier,
         ]) : null;
     }
 
     private function mapItemPriceData(?ItemPriceDataRequest $itemPriceData): ?array
     {
         return $itemPriceData ? $this->deleteNullValues([
-            'SalesPriceNet'        => $itemPriceData->salesPriceNet,
-            'SuggestedRetailPrice' => $itemPriceData->suggestedRetailPrice,
-            'PurchasePriceNet'     => $itemPriceData->purchasePriceNet,
-            'EbayPrice'            => $itemPriceData->ebayPrice,
-            'AmazonPrice'          => $itemPriceData->amazonPrice,
+            'salesPriceNet'        => $itemPriceData->salesPriceNet,
+            'suggestedRetailPrice' => $itemPriceData->suggestedRetailPrice,
+            'purchasePriceNet'     => $itemPriceData->purchasePriceNet,
+            'ebayPrice'            => $itemPriceData->ebayPrice,
+            'amazonPrice'          => $itemPriceData->amazonPrice,
         ]) : null;
     }
 
     private function mapStorageOptions(?ItemStorageOptionsRequest $storageOptions): ?array
     {
         return $storageOptions ? $this->deleteNullValues([
-            'InventoryManagementActive'             => $storageOptions->inventoryManagementActive,
-            'SplitQuantity'                         => $storageOptions->splitQuantity,
-            'GlobalMinimumStockLevel'               => $storageOptions->globalMinimumStock,
-            'Buffer'                                => $storageOptions->buffer,
-            'SerialNumberItem'                      => $storageOptions->serialNumberItem,
-            'SerialNumberTracking'                  => $storageOptions->serialNumberTracking,
-            'SubjectToShelfLifeExpirationDate'      => $storageOptions->subjectToShelfLifeExpirationDate,
-            'SubjectToBatchItem'                    => $storageOptions->subjectToBatchItem,
-            'ProcurementTime'                       => $storageOptions->procurementTime,
-            'DetermineProcurementTimeAutomatically' => $storageOptions->determineProcurementTimeAutomatically,
-            'AdditionalHandlingTime'                => $storageOptions->additionalHandlingTime,
+            'inventoryManagementActive'             => $storageOptions->inventoryManagementActive,
+            'splitQuantity'                         => $storageOptions->splitQuantity,
+            'globalMinimumStockLevel'               => $storageOptions->globalMinimumStock,
+            'buffer'                                => $storageOptions->buffer,
+            'serialNumberItem'                      => $storageOptions->serialNumberItem,
+            'serialNumberTracking'                  => $storageOptions->serialNumberTracking,
+            'subjectToShelfLifeExpirationDate'      => $storageOptions->subjectToShelfLifeExpirationDate,
+            'subjectToBatchItem'                    => $storageOptions->subjectToBatchItem,
+            'procurementTime'                       => $storageOptions->procurementTime,
+            'determineProcurementTimeAutomatically' => $storageOptions->determineProcurementTimeAutomatically,
+            'additionalHandlingTime'                => $storageOptions->additionalHandlingTime,
         ]) : null;
     }
 
     private function mapDimensions(?ItemDimensionsRequest $dimensions): ?array
     {
         return $dimensions ? $this->deleteNullValues([
-            'Length' => $dimensions->length,
-            'Width'  => $dimensions->width,
-            'Height' => $dimensions->height,
+            'length' => $dimensions->length,
+            'width'  => $dimensions->width,
+            'height' => $dimensions->height,
         ]) : null;
     }
 
@@ -201,16 +200,16 @@ class ItemRepository extends Repository
         /** @noinspection SpellCheckingInspection */
 
         return $weights ? $this->deleteNullValues([
-            'ItemWeigth'     => $weights->itemWeight,
-            'ShippingWeight' => $weights->shippingWeight,
+            'itemWeigth'     => $weights->itemWeight,
+            'shippingWeight' => $weights->shippingWeight,
         ]) : null;
     }
 
     private function mapDangerousGoods(?ItemDangerousGoodsRequest $dangerousGoods): ?array
     {
         return $dangerousGoods ? $this->deleteNullValues([
-            'UnNumber' => $dangerousGoods->unNumber,
-            'HazardNo' => $dangerousGoods->hazardNo,
+            'unNumber' => $dangerousGoods->unNumber,
+            'hazardNo' => $dangerousGoods->hazardNo,
         ]) : null;
     }
 }

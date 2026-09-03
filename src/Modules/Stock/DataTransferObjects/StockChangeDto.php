@@ -19,15 +19,15 @@ readonly class StockChangeDto
     public static function fromResponse(array $data): static
     {
         return new static(
-            $data['ItemId'],
-            $data['WarehouseId'],
-            $data['StorageLocationId'],
-            $data['Quantity'],
-            $data['ChangedDate'] ?? null,
-            $data['ShelfLifeExpirationDate'] ?? null,
-            $data['BatchNumber'] ?? null,
-            $data['Comment'],
-            $data['Username'],
+            $data['itemId'],
+            $data['warehouseId'],
+            $data['storageLocationId'],
+            $data['quantity'],
+            $data['changedDate'] ?? null,
+            $data['shelfLifeExpirationDate'] ?? null,
+            $data['batchNumber'] ?? null,
+            $data['comment'],
+            $data['username'],
         );
     }
 }

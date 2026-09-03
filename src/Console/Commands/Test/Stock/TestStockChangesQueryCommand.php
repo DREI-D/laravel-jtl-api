@@ -1,6 +1,6 @@
 <?php
 
-namespace DREID\LaravelJtlApi\Console\Commands\Test\Customer;
+namespace DREID\LaravelJtlApi\Console\Commands\Test\Stock;
 
 use DREID\LaravelJtlApi\Exceptions\ConnectionException;
 use DREID\LaravelJtlApi\Exceptions\MissingApiKeyException;
@@ -8,14 +8,15 @@ use DREID\LaravelJtlApi\Exceptions\MissingLicenseException;
 use DREID\LaravelJtlApi\Exceptions\MissingPermissionException;
 use DREID\LaravelJtlApi\Exceptions\UnauthorizedException;
 use DREID\LaravelJtlApi\Exceptions\UnhandledResponseException;
-use DREID\LaravelJtlApi\Modules\Info\InfoRepository;
+use DREID\LaravelJtlApi\Modules\Stock\Requests\QueryStockChangesRequest;
+use DREID\LaravelJtlApi\Modules\Stock\StockRepository;
 use Illuminate\Console\Command;
 
-class TestInfoStatusCommand extends Command
+class TestStockChangesQueryCommand extends Command
 {
-    protected $signature = 'jtl-api:test:info-status';
+    protected $signature = 'jtl-api:test:stock-changes-query';
 
-    protected $description = 'Tests the info status endpoint';
+    protected $description = 'Tests the stock changes query endpoint';
 
     /**
      * @throws UnhandledResponseException
@@ -27,6 +28,8 @@ class TestInfoStatusCommand extends Command
      */
     public function handle(): void
     {
-        dd(app(InfoRepository::class)->getStatus()->info);
+        $response = app(StockRepository::class)->queryStockChanges(new QueryStockChangesRequest());
+
+        dd($response->items);
     }
 }

@@ -16,8 +16,8 @@ readonly class ItemDangerousGoodsDto
         $service = app(DataTransferObjectService::class);
 
         return new self(
-            $service->getArrayValue($data, 'UnNumber'),
-            $service->getArrayValue($data, 'HazardNo'),
+            $service->getArrayValue($data, 'unNumber'),
+            $service->getArrayValue($data, 'hazardNo'),
         );
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace DREID\LaravelJtlApi\Console\Commands\Test\Customer;
+namespace DREID\LaravelJtlApi\Console\Commands\Test\Item;
 
 use DREID\LaravelJtlApi\Exceptions\ConnectionException;
 use DREID\LaravelJtlApi\Exceptions\MissingApiKeyException;
@@ -8,15 +8,15 @@ use DREID\LaravelJtlApi\Exceptions\MissingLicenseException;
 use DREID\LaravelJtlApi\Exceptions\MissingPermissionException;
 use DREID\LaravelJtlApi\Exceptions\UnauthorizedException;
 use DREID\LaravelJtlApi\Exceptions\UnhandledResponseException;
-use DREID\LaravelJtlApi\Modules\Warehouse\Requests\QueryWarehousesRequest;
-use DREID\LaravelJtlApi\Modules\Warehouse\WarehouseRepository;
+use DREID\LaravelJtlApi\Modules\Item\ItemRepository;
+use DREID\LaravelJtlApi\Modules\Item\Requests\QueryItemsRequest;
 use Illuminate\Console\Command;
 
-class TestWarehouseQueryCommand extends Command
+class TestItemQueryCommand extends Command
 {
-    protected $signature = 'jtl-api:test:warehouse-query';
+    protected $signature = 'jtl-api:test:item-query';
 
-    protected $description = 'Tests the warehouse query endpoint';
+    protected $description = 'Tests the item query endpoint';
 
     /**
      * @throws UnhandledResponseException
@@ -28,7 +28,7 @@ class TestWarehouseQueryCommand extends Command
      */
     public function handle(): void
     {
-        $response = app(WarehouseRepository::class)->queryWarehouses(new QueryWarehousesRequest());
+        $response = app(ItemRepository::class)->queryItems(new QueryItemsRequest(pageSize: 1));
 
         dd($response->items);
     }

@@ -21,17 +21,17 @@ readonly class ItemStorageOptionsDto
     public static function fromResponse(array $data): static
     {
         return new self(
-            $data['InventoryManagementActive'],
-            $data['SplitQuantity'],
-            $data['GlobalMinimumStockLevel'],
-            $data['Buffer'],
-            $data['SerialNumberItem'],
-            $data['SerialNumberTracking'],
-            $data['SubjectToShelfLifeExpirationDate'],
-            $data['SubjectToBatchItem'],
-            $data['ProcurementTime'],
-            $data['DetermineProcurementTimeAutomatically'],
-            $data['AdditionalHandlingTime'],
+            $data['inventoryManagementActive'],
+            $data['splitQuantity'],
+            $data['globalMinimumStockLevel'],
+            $data['buffer'],
+            $data['serialNumberItem'],
+            $data['serialNumberTracking'],
+            $data['subjectToShelfLifeExpirationDate'],
+            $data['subjectToBatchItem'],
+            $data['procurementTime'],
+            $data['determineProcurementTimeAutomatically'],
+            $data['additionalHandlingTime'],
         );
     }
 }

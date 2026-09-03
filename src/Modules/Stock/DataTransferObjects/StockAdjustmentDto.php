@@ -18,14 +18,14 @@ readonly class StockAdjustmentDto
     public static function fromResponse(array $data): static
     {
         return new static(
-            $data['WarehouseId'],
-            $data['StorageLocationId'],
-            $data['StorageLocationName'],
-            $data['ItemId'],
-            $data['QuantityTotal'],
-            $data['QuantityLockedForShipment'],
-            $data['QuantityLockedForAvailability'],
-            $data['QuantityInPickingLists'],
+            $data['warehouseId'],
+            $data['storageLocationId'],
+            $data['storageLocationName'],
+            $data['itemId'],
+            $data['quantityTotal'],
+            $data['quantityLockedForShipment'],
+            $data['quantityLockedForAvailability'],
+            $data['quantityInPickingLists'],
         );
     }
 }
