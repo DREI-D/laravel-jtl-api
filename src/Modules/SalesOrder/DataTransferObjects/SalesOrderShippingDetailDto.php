@@ -18,14 +18,14 @@ readonly class SalesOrderShippingDetailDto
     public static function fromResponse(array $data): static
     {
         return new self(
-            $data['ShippingMethodId'] ?? null,
-            $data['DeliveryCompleteStatus'] ?? null,
-            $data['ShippingPriority'] ?? null,
-            $data['ShippingDate'] ?? null,
-            $data['EstimatedDeliveryDate'] ?? null,
-            $data['DeliveredDate'] ?? null,
-            $data['OnHoldReasonId'] ?? null,
-            $data['ExtraWeight'] ?? null,
+            $data['shippingMethodId'] ?? null,
+            $data['deliveryCompleteStatus'] ?? null,
+            $data['shippingPriority'] ?? null,
+            $data['shippingDate'] ?? null,
+            $data['estimatedDeliveryDate'] ?? null,
+            $data['deliveredDate'] ?? null,
+            $data['onHoldReasonId'] ?? null,
+            $data['extraWeight'] ?? null,
         );
     }
 }

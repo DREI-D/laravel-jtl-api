@@ -13,9 +13,9 @@ readonly class SalesOrderDepartureCountryDto
     public static function fromResponse(array $data): static
     {
         return new self(
-            $data['CountryISO'],
-            $data['CurrencyIso'],
-            $data['CurrencyFactor'],
+            $data['countryISO'],
+            $data['currencyIso'],
+            $data['currencyFactor'],
         );
     }
 }

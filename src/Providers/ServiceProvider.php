@@ -22,6 +22,9 @@ use DREID\LaravelJtlApi\Console\Commands\Test\Item\TestItemUpdateCommand;
 use DREID\LaravelJtlApi\Console\Commands\Test\ItemCustomField\TestItemCustomFieldDeleteCommand;
 use DREID\LaravelJtlApi\Console\Commands\Test\ItemCustomField\TestItemCustomFieldUpdateCommand;
 use DREID\LaravelJtlApi\Console\Commands\Test\ItemCustomField\TestItemCustomFieldValuesQueryCommand;
+use DREID\LaravelJtlApi\Console\Commands\Test\SalesOrder\TestSalesOrderCreateCommand;
+use DREID\LaravelJtlApi\Console\Commands\Test\SalesOrder\TestSalesOrderQueryCommand;
+use DREID\LaravelJtlApi\Console\Commands\Test\SalesOrderLineItem\TestSalesOrderLineItemCreateCommand;
 use DREID\LaravelJtlApi\Console\Commands\Test\SalesOrderWorkflow\TestSalesOrderWorkflowQueryCommand;
 use DREID\LaravelJtlApi\Console\Commands\Test\SalesOrderWorkflow\TestSalesOrderWorkflowTriggerCommand;
 use DREID\LaravelJtlApi\Console\Commands\Test\Stock\TestStockAdjustmentCommand;
@@ -71,6 +74,9 @@ class ServiceProvider extends LaravelServiceProvider
                 TestItemCustomFieldDeleteCommand::class,
                 TestItemCustomFieldUpdateCommand::class,
                 TestItemCustomFieldValuesQueryCommand::class,
+                TestSalesOrderCreateCommand::class,
+                TestSalesOrderQueryCommand::class,
+                TestSalesOrderLineItemCreateCommand::class,
                 TestSalesOrderWorkflowQueryCommand::class,
                 TestSalesOrderWorkflowTriggerCommand::class,
                 TestStockAdjustmentCommand::class,

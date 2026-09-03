@@ -39,7 +39,6 @@ class SalesOrderRepository extends Repository
         $params = $this->deleteNullValues([
             'salesOrderNumber'       => $request->salesOrderNumber,
             'externalOrderNumber'    => $request->externalOrderNumber,
-            'billingNumber'          => $request->billingNumber,
             'itemId'                 => $request->itemId,
             'customerId'             => $request->customerId,
             'paymentStatus'          => $request->paymentStatus,
@@ -61,7 +60,7 @@ class SalesOrderRepository extends Repository
             'pageSize'               => $request->pageSize,
         ]);
 
-        $response = $this->get('/v1/salesOrders', $params);
+        $response = $this->get('/salesOrders', $params);
 
         if ($response->wasSuccessful) {
             return new QuerySalesOrdersResponse($response);
@@ -88,33 +87,32 @@ class SalesOrderRepository extends Repository
         }
 
         $salesOrderShippingDetail = $request->salesOrderShippingDetail ? $this->deleteNullValues([
-            'ShippingMethodId'      => $request->salesOrderShippingDetail->shippingMethodId,
-            'ShippingPriority'      => $request->salesOrderShippingDetail->shippingPriority,
-            'ShippingDate'          => $request->salesOrderShippingDetail->shippingDate,
-            'EstimatedDeliveryDate' => $request->salesOrderShippingDetail->estimatedDeliveryDate,
-            'OnHoldReasonId'        => $request->salesOrderShippingDetail->onHoldReasonId,
-            'ExtraWeight'           => $request->salesOrderShippingDetail->extraWeight,
+            'shippingMethodId'      => $request->salesOrderShippingDetail->shippingMethodId,
+            'shippingPriority'      => $request->salesOrderShippingDetail->shippingPriority,
+            'shippingDate'          => $request->salesOrderShippingDetail->shippingDate,
+            'estimatedDeliveryDate' => $request->salesOrderShippingDetail->estimatedDeliveryDate,
+            'onHoldReasonId'        => $request->salesOrderShippingDetail->onHoldReasonId,
+            'extraWeight'           => $request->salesOrderShippingDetail->extraWeight,
         ]) : null;
 
         $body = [
-            'CustomerId'               => $request->customerId,
-            'Number'                   => $request->number,
-            'ExternalNumber'           => $request->externalNumber,
-            'BillingNumber'            => $request->billingNumber,
-            'CompanyId'                => $request->companyId,
-            'CustomerVatID'            => $request->customerVatId,
-            'BillingAddress'           => $this->mapAddress($request->billingAddress),
-            'Shipmentaddress'          => $this->mapAddress($request->shipmentAddress),
-            'SalesOrderDate'           => $request->salesOrderDate,
-            'SalesOrderShippingDetail' => $salesOrderShippingDetail,
-            'ColorcodeId'              => $request->colorCodeId,
-            'Comment'                  => $request->comment,
-            'CustomerComment'          => $request->customerComment,
-            'LanguageIso'              => $request->languageIso,
+            'customerId'               => $request->customerId,
+            'number'                   => $request->number,
+            'externalNumber'           => $request->externalNumber,
+            'companyId'                => $request->companyId,
+            'customerVatID'            => $request->customerVatId,
+            'billingAddress'           => $this->mapAddress($request->billingAddress),
+            'shipmentaddress'          => $this->mapAddress($request->shipmentAddress),
+            'salesOrderDate'           => $request->salesOrderDate,
+            'salesOrderShippingDetail' => $salesOrderShippingDetail,
+            'colorcodeId'              => $request->colorCodeId,
+            'comment'                  => $request->comment,
+            'customerComment'          => $request->customerComment,
+            'languageIso'              => $request->languageIso,
         ];
 
         $body = $this->deleteNullValues($body);
-        $response = $this->post('/v1/salesOrders', $body);
+        $response = $this->post('/salesOrders', $body);
 
         if ($response->wasSuccessful) {
             return new CreateSalesOrderResponse($response);

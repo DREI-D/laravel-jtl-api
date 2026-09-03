@@ -9,53 +9,13 @@ use DREID\LaravelJtlApi\Exceptions\MissingLicenseException;
 use DREID\LaravelJtlApi\Exceptions\MissingPermissionException;
 use DREID\LaravelJtlApi\Exceptions\UnauthorizedException;
 use DREID\LaravelJtlApi\Exceptions\UnhandledResponseException;
-use DREID\LaravelJtlApi\Modules\SalesOrderLineItem\Requests\CreateSalesOrderLineItemRequest;
 use DREID\LaravelJtlApi\Modules\SalesOrderLineItem\Requests\CreateSalesOrderLineItemsItem;
 use DREID\LaravelJtlApi\Modules\SalesOrderLineItem\Requests\CreateSalesOrderLineItemsRequest;
-use DREID\LaravelJtlApi\Modules\SalesOrderLineItem\Responses\CreateSalesOrderLineItemResponse;
 use DREID\LaravelJtlApi\Modules\SalesOrderLineItem\Responses\CreateSalesOrderLineItemsResponse;
 use DREID\LaravelJtlApi\Repository;
 
 class SalesOrderLineItemRepository extends Repository
 {
-    /**
-     * @throws MissingApiKeyException
-     * @throws MissingLicenseException
-     * @throws MissingPermissionException
-     * @throws UnauthorizedException
-     * @throws UnhandledResponseException
-     * @throws ConnectionException
-     * @deprecated use createSalesOrderLineItems instead
-     */
-    public function createSalesOrderLineItem(CreateSalesOrderLineItemRequest $request): CreateSalesOrderLineItemResponse
-    {
-        $response = $this->createSalesOrderLineItems(
-            new CreateSalesOrderLineItemsRequest(
-                $request->salesOrderId,
-                [
-                    new CreateSalesOrderLineItemsItem(
-                        quantity: $request->quantity,
-                        itemId: $request->itemId,
-                        name: $request->name,
-                        sku: $request->sku,
-                        salesUnit: $request->salesUnit,
-                        salesPriceNet: $request->salesPriceNet,
-                        salesPriceGross: $request->salesPriceGross,
-                        discount: $request->discount,
-                        purchasePriceNet: $request->purchasePriceNet,
-                        taxRate: $request->taxRate,
-                        notice: $request->notice,
-                    )
-                ]
-            )
-        );
-
-        return new CreateSalesOrderLineItemResponse(
-            $response->response,
-            $response->salesOrderLineItems[0]
-        );
-    }
-
     /**
      * @throws MissingApiKeyException
      * @throws MissingLicenseException
@@ -74,21 +34,24 @@ class SalesOrderLineItemRepository extends Repository
 
         $items = array_map(function (CreateSalesOrderLineItemsItem $item) {
             return $this->deleteNullValues([
-                'ItemId'           => $item->itemId,
-                'Name'             => $item->name,
-                'SKU'              => $item->sku,
-                'Quantity'         => $item->quantity,
-                'SalesUnit'        => $item->salesUnit,
-                'SalesPriceNet'    => $item->salesPriceNet,
-                'SalesPriceGross'  => $item->salesPriceGross,
-                'Discount'         => $item->discount,
-                'PurchasePriceNet' => $item->purchasePriceNet,
-                'TaxRate'          => $item->taxRate,
-                'Notice'           => $item->notice,
+                'itemId'           => $item->itemId,
+                'name'             => $item->name,
+                'sku'              => $item->sku,
+                'quantity'         => $item->quantity,
+                'salesUnit'        => $item->salesUnit,
+                'salesPriceNet'    => $item->salesPriceNet,
+                'salesPriceGross'  => $item->salesPriceGross,
+                'discount'         => $item->discount,
+                'purchasePriceNet' => $item->purchasePriceNet,
+                'taxRate'          => $item->taxRate,
+                'notice'           => $item->notice,
             ]);
         }, $request->items);
 
-        $response = $this->post('/v1/salesOrders/' . $request->salesOrderId . '/lineitems', $items);
+        // todo: test, jtl api 2.0.6 is bugged. Parsing tax rate & discount fails for no reason...
+        // https://issues.jtl-software.de/issues/WAWI-87918
+
+        $response = $this->post('/salesOrders/' . $request->salesOrderId . '/lineitems', $items);
 
         if ($response->wasSuccessful) {
             return new CreateSalesOrderLineItemsResponse($response);

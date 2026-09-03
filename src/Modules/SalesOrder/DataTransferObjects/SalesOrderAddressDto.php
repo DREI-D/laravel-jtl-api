@@ -17,13 +17,13 @@ readonly class SalesOrderAddressDto
     public static function fromResponse(array $data): static
     {
         return new self(
-            $data['Company'] ?? null,
-            $data['FirstName'] ?? null,
-            $data['LastName'] ?? null,
-            $data['Street'],
-            $data['PostalCode'] ?? null,
-            $data['City'] ?? null,
-            $data['CountryIso'],
+            $data['company'] ?? null,
+            $data['firstName'] ?? null,
+            $data['lastName'] ?? null,
+            $data['street'],
+            $data['postalCode'] ?? null,
+            $data['city'] ?? null,
+            $data['countryIso'],
         );
     }
 }

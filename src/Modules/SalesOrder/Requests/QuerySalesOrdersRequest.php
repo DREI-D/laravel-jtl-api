@@ -7,7 +7,6 @@ readonly class QuerySalesOrdersRequest
     public function __construct(
         public ?string $salesOrderNumber = null,
         public ?string $externalOrderNumber = null,
-        public ?string $billingNumber = null,
         public ?int $itemId = null,
         public ?int $customerId = null,
         public ?int $paymentStatus = null,

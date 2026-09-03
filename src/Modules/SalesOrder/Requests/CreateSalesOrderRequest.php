@@ -8,7 +8,6 @@ readonly class CreateSalesOrderRequest
         public int $customerId,
         public ?string $number = null,
         public ?string $externalNumber = null,
-        public ?string $billingNumber = null,
         public ?int $companyId = null,
         public ?CreateSalesOrderDepartureCountryRequest $departureCountry = null,
         public ?string $customerVatId = null,

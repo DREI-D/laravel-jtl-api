@@ -24,20 +24,20 @@ readonly class SalesOrderLineItemDto
     public static function fromResponse(array $data): static
     {
         return new self(
-            $data['Id'],
-            $data['ItemId'] ?? null,
-            $data['Name'] ?? null,
-            $data['SKU'] ?? null,
-            $data['Type'],
-            $data['Quantity'],
-            $data['QuantityDelivered'] ?? null,
-            $data['SalesUnit'] ?? null,
-            $data['SalesPriceNet']  ?? null,
-            $data['SalesPriceGross'] ?? null,
-            $data['Discount'] ?? null,
-            $data['PurchasePriceNet'] ?? null,
-            $data['TaxRate'] ?? null,
-            $data['Notice'] ?? null,
+            $data['id'],
+            $data['itemId'] ?? null,
+            $data['name'] ?? null,
+            $data['sku'] ?? null,
+            $data['type'],
+            $data['quantity'],
+            $data['quantityDelivered'] ?? null,
+            $data['salesUnit'] ?? null,
+            $data['salesPriceNet']  ?? null,
+            $data['salesPriceGross'] ?? null,
+            $data['discount'] ?? null,
+            $data['purchasePriceNet'] ?? null,
+            $data['taxRate'] ?? null,
+            $data['notice'] ?? null,
         );
     }
 }
