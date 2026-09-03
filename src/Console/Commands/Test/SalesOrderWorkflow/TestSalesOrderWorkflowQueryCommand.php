@@ -8,8 +8,6 @@ use DREID\LaravelJtlApi\Exceptions\MissingLicenseException;
 use DREID\LaravelJtlApi\Exceptions\MissingPermissionException;
 use DREID\LaravelJtlApi\Exceptions\UnauthorizedException;
 use DREID\LaravelJtlApi\Exceptions\UnhandledResponseException;
-use DREID\LaravelJtlApi\Modules\Item\ItemRepository;
-use DREID\LaravelJtlApi\Modules\Item\Requests\QueryItemsRequest;
 use DREID\LaravelJtlApi\Modules\SalesOrderWorkflow\SalesOrderWorkflowRepository;
 use Illuminate\Console\Command;
 

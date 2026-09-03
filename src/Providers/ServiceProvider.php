@@ -19,6 +19,9 @@ use DREID\LaravelJtlApi\Console\Commands\Test\Invoice\TestInvoicePdfCommand;
 use DREID\LaravelJtlApi\Console\Commands\Test\Item\TestItemCreateCommand;
 use DREID\LaravelJtlApi\Console\Commands\Test\Item\TestItemQueryCommand;
 use DREID\LaravelJtlApi\Console\Commands\Test\Item\TestItemUpdateCommand;
+use DREID\LaravelJtlApi\Console\Commands\Test\ItemCustomField\TestItemCustomFieldDeleteCommand;
+use DREID\LaravelJtlApi\Console\Commands\Test\ItemCustomField\TestItemCustomFieldUpdateCommand;
+use DREID\LaravelJtlApi\Console\Commands\Test\ItemCustomField\TestItemCustomFieldValuesQueryCommand;
 use DREID\LaravelJtlApi\Console\Commands\Test\SalesOrderWorkflow\TestSalesOrderWorkflowQueryCommand;
 use DREID\LaravelJtlApi\Console\Commands\Test\SalesOrderWorkflow\TestSalesOrderWorkflowTriggerCommand;
 use DREID\LaravelJtlApi\Console\Commands\Test\Stock\TestStockAdjustmentCommand;
@@ -65,6 +68,9 @@ class ServiceProvider extends LaravelServiceProvider
                 TestItemQueryCommand::class,
                 TestItemCreateCommand::class,
                 TestItemUpdateCommand::class,
+                TestItemCustomFieldDeleteCommand::class,
+                TestItemCustomFieldUpdateCommand::class,
+                TestItemCustomFieldValuesQueryCommand::class,
                 TestSalesOrderWorkflowQueryCommand::class,
                 TestSalesOrderWorkflowTriggerCommand::class,
                 TestStockAdjustmentCommand::class,
