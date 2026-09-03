@@ -63,14 +63,14 @@ class CategoryRepository extends Repository
         }
 
         $body = $this->deleteNullValues([
-            'Name'                => $request->name,
-            'Description'         => $request->description,
-            'ParentCategoryId'    => $request->parentCategoryId,
-            'SortNumber'          => $request->sortNumber,
-            'ActiveSalesChannels' => $request->activeSalesChannels,
+            'name'                => $request->name,
+            'description'         => $request->description,
+            'parentCategoryId'    => $request->parentCategoryId,
+            'sortNumber'          => $request->sortNumber,
+            'activeSalesChannels' => $request->activeSalesChannels,
         ]);
 
-        $response = $this->post('/v1/categories', $body);
+        $response = $this->post('/categories', $body);
 
         if ($response->wasSuccessful) {
             return new CreateCategoryResponse($response);

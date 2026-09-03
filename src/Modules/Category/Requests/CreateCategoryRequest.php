@@ -9,6 +9,6 @@ readonly class CreateCategoryRequest
         public ?string $description = null,
         public ?int $parentCategoryId = null,
         public ?int $sortNumber = null,
-        public ?string $activeSalesChannels = null,
+        public ?array $activeSalesChannels = null,
     ) {}
 }

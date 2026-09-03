@@ -32,7 +32,7 @@ class SalesOrderWorkflowRepository extends Repository
             throw MissingPermissionException::oneOf($permissions);
         }
 
-        $response = $this->get('/v1/salesOrders/workflowEvents');
+        $response = $this->get('/salesOrders/workflowEvents');
 
         if ($response->wasSuccessful) {
             return new QuerySalesOrderWorkflowEventsResponse($response);
@@ -59,10 +59,10 @@ class SalesOrderWorkflowRepository extends Repository
         }
 
         $body = [
-            'Id' => $request->id,
+            'id' => $request->id,
         ];
 
-        $response = $this->post('/v1/salesOrders/' . $request->salesOrderId . '/workflowEvents', $body);
+        $response = $this->post('/salesOrders/' . $request->salesOrderId . '/workflowEvents', $body);
 
         if ($response->wasSuccessful) {
             return new TriggerSalesOrderWorkflowEventResponse($response);

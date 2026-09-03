@@ -31,7 +31,7 @@ class InvoiceRepository extends Repository
             throw MissingPermissionException::oneOf($permissions);
         }
 
-        $response = $this->post('/v1/invoices/' . $request->invoiceId . '/output/pdf');
+        $response = $this->post('/invoices/' . $request->invoiceId . '/output/pdf');
 
         if ($response->wasSuccessful) {
             return new PdfInvoiceResponse($response);
